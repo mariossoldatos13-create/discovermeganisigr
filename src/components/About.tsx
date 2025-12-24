@@ -17,8 +17,8 @@ const features = [
   },
   {
     icon: Sun,
-    title: "Perfect Weather",
-    description: "Enjoy over 300 days of sunshine with mild Mediterranean climate perfect for outdoor exploration.",
+    title: "Peace & Tranquility",
+    description: "Escape the crowds and discover a serene paradise where time slows down. Meganisi remains unspoiled by mass tourism.",
     image: "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=800&h=600&fit=crop",
   },
   {
@@ -29,8 +29,8 @@ const features = [
   },
   {
     icon: MapPin,
-    title: "Authentic Greece",
-    description: "Experience traditional Greek hospitality in charming villages untouched by mass tourism.",
+    title: "Warm Hospitality",
+    description: "Experience genuine Greek warmth in charming villages where locals welcome you like family.",
     image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&h=600&fit=crop",
   },
 ];
@@ -73,36 +73,36 @@ const About = () => {
         </div>
 
         {/* Features Carousel */}
-        <div className="relative px-12">
+        <div className="relative -mx-4 md:-mx-8 lg:-mx-16">
           <Carousel
             opts={{
-              align: "start",
+              align: "center",
               loop: true,
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-4">
+            <CarouselContent>
               {features.map((feature, index) => (
-                <CarouselItem key={feature.title} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="group relative h-[400px] rounded-2xl overflow-hidden shadow-card">
+                <CarouselItem key={feature.title} className="basis-full">
+                  <div className="group relative h-[70vh] min-h-[500px] overflow-hidden">
                     {/* Background Image */}
                     <img
                       src={feature.image}
                       alt={feature.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/50 to-foreground/20" />
                     
                     {/* Content */}
-                    <div className="absolute inset-0 flex flex-col justify-end p-6">
-                      <div className="w-12 h-12 rounded-xl bg-card/90 backdrop-blur-sm flex items-center justify-center mb-4">
-                        <feature.icon className="w-6 h-6 text-primary" />
+                    <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8 md:p-16">
+                      <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-card/90 backdrop-blur-sm flex items-center justify-center mb-6">
+                        <feature.icon className="w-8 h-8 md:w-10 md:h-10 text-primary" />
                       </div>
-                      <h3 className="font-display text-2xl font-bold text-card mb-2">
+                      <h3 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-card mb-4">
                         {feature.title}
                       </h3>
-                      <p className="text-card/80 font-sans leading-relaxed">
+                      <p className="text-card/90 font-sans text-lg md:text-xl max-w-2xl leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
@@ -110,8 +110,8 @@ const About = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-0 bg-card/90 backdrop-blur-sm border-0 hover:bg-card" />
-            <CarouselNext className="right-0 bg-card/90 backdrop-blur-sm border-0 hover:bg-card" />
+            <CarouselPrevious className="left-4 md:left-8 w-12 h-12 bg-card/90 backdrop-blur-sm border-0 hover:bg-card" />
+            <CarouselNext className="right-4 md:right-8 w-12 h-12 bg-card/90 backdrop-blur-sm border-0 hover:bg-card" />
           </Carousel>
         </div>
 
