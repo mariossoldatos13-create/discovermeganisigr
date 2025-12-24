@@ -1,8 +1,9 @@
-import { Ship, Bike } from "lucide-react";
+import { Ship, Bike, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import boatImage from "@/assets/boat.jpg";
 import motorbikeImage from "@/assets/motorbike.jpg";
+import cruiseImage from "@/assets/cruise-meganisi.jpg";
 
 const categories = [
   {
@@ -16,14 +17,24 @@ const categories = [
     href: "/boats",
   },
   {
-    id: "road-vehicles",
+    id: "cruises",
+    icon: Compass,
+    title: "Cruises",
+    subtitle: "Island Hopping",
+    description: "Discover the magic of the Ionian islands. From the hidden beaches of Meganisi to the mythical shores of Ithaca, choose your perfect destination.",
+    count: "4 destinations",
+    image: cruiseImage,
+    href: "/cruises",
+  },
+  {
+    id: "land-adventures",
     icon: Bike,
-    title: "Road Vehicles",
+    title: "Land Adventures",
     subtitle: "Explore by Land",
-    description: "Navigate the charming villages and coastal roads with our scooters, or take the road less traveled with our powerful ATV. Perfect for discovering hidden viewpoints.",
-    count: "3 vehicles",
+    description: "Navigate the charming villages with our scooters and e-bikes, or take the road less traveled with our powerful ATV. Perfect for discovering hidden viewpoints.",
+    count: "5 vehicles",
     image: motorbikeImage,
-    href: "/road-vehicles",
+    href: "/land-adventures",
   },
 ];
 
@@ -46,7 +57,7 @@ const Fleet = () => {
         </div>
 
         {/* Fleet Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {categories.map((category, index) => (
             <Link
               to={category.href}
@@ -55,7 +66,7 @@ const Fleet = () => {
               style={{ animationDelay: `${0.15 * (index + 1)}s` }}
             >
               {/* Image */}
-              <div className="relative h-72 overflow-hidden">
+              <div className="relative h-64 overflow-hidden">
                 <img
                   src={category.image}
                   alt={category.title}
@@ -79,8 +90,8 @@ const Fleet = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6 md:p-8">
-                <p className="text-muted-foreground font-sans mb-6 leading-relaxed">
+              <div className="p-6">
+                <p className="text-muted-foreground font-sans mb-6 leading-relaxed text-sm">
                   {category.description}
                 </p>
                 <Button variant="contact" className="w-full group-hover:bg-primary group-hover:text-card transition-colors">

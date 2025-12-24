@@ -55,8 +55,11 @@ const Footer = () => {
               <Link to="/boats" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
                 Boats
               </Link>
-              <Link to="/road-vehicles" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
-                Road Vehicles
+              <Link to="/cruises" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
+                Cruises
+              </Link>
+              <Link to="/land-adventures" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
+                Land Adventures
               </Link>
               <a href="/#contact" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
                 Contact Us

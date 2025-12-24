@@ -22,7 +22,8 @@ const Header = () => {
     { href: isHomePage ? "#home" : "/", label: "Home", isAnchor: isHomePage },
     { href: isHomePage ? "#about" : "/#about", label: "About", isAnchor: isHomePage },
     { href: "/boats", label: "Boats", isAnchor: false },
-    { href: "/road-vehicles", label: "Road Vehicles", isAnchor: false },
+    { href: "/cruises", label: "Cruises", isAnchor: false },
+    { href: "/land-adventures", label: "Land Adventures", isAnchor: false },
     { href: isHomePage ? "#contact" : "/#contact", label: "Contact", isAnchor: isHomePage },
   ];
 
