@@ -31,7 +31,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "Experienced Boater",
+    name: "Grant Edersby",
     review: "Another superb day with an excellent boat. Over the years we have hired many boats, but today's was the best I've hired. It was a fully equipped RHIB with SatNav, windlass anchor, and SUZUKI 250hp engine. Michalis goes the extra distance to ensure you have all the safety and local tips you need.",
     rating: 5,
   },
@@ -124,8 +124,8 @@ const About = () => {
               >
                 {/* Stars */}
                 <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
                 
