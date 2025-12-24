@@ -1,26 +1,37 @@
-import { MapPin, Sun, Waves, Mountain, Star, ExternalLink } from "lucide-react";
+import { MapPin, Sun, Waves, Mountain, Star, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
 
 const features = [
   {
     icon: Waves,
     title: "Crystal Clear Waters",
     description: "The Ionian Sea around Meganisi boasts some of the clearest, most pristine waters in the Mediterranean.",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop",
   },
   {
     icon: Sun,
     title: "Perfect Weather",
     description: "Enjoy over 300 days of sunshine with mild Mediterranean climate perfect for outdoor exploration.",
+    image: "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=800&h=600&fit=crop",
   },
   {
     icon: Mountain,
     title: "Scenic Landscapes",
     description: "Discover hidden coves, olive groves, and dramatic cliffs that define the island's natural beauty.",
+    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&h=600&fit=crop",
   },
   {
     icon: MapPin,
     title: "Authentic Greece",
     description: "Experience traditional Greek hospitality in charming villages untouched by mass tourism.",
+    image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&h=600&fit=crop",
   },
 ];
 
@@ -61,25 +72,47 @@ const About = () => {
           </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className="group p-8 bg-card rounded-2xl shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1 animate-fade-in opacity-0"
-              style={{ animationDelay: `${0.1 * (index + 1)}s` }}
-            >
-              <div className="w-14 h-14 rounded-xl bg-sea-light flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300">
-                <feature.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-              </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-3">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground font-sans leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
-          ))}
+        {/* Features Carousel */}
+        <div className="relative px-12">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {features.map((feature, index) => (
+                <CarouselItem key={feature.title} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="group relative h-[400px] rounded-2xl overflow-hidden shadow-card">
+                    {/* Background Image */}
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent" />
+                    
+                    {/* Content */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-6">
+                      <div className="w-12 h-12 rounded-xl bg-card/90 backdrop-blur-sm flex items-center justify-center mb-4">
+                        <feature.icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="font-display text-2xl font-bold text-card mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-card/80 font-sans leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0 bg-card/90 backdrop-blur-sm border-0 hover:bg-card" />
+            <CarouselNext className="right-0 bg-card/90 backdrop-blur-sm border-0 hover:bg-card" />
+          </Carousel>
         </div>
 
         {/* Company Story Section */}
