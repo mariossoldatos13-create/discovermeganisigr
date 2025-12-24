@@ -31,7 +31,7 @@ const features = [
     icon: MapPin,
     title: "Warm Hospitality",
     description: "Experience genuine Greek warmth in charming villages where locals welcome you like family.",
-    image: "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
   },
 ];
 
