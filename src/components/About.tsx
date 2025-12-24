@@ -1,4 +1,5 @@
-import { MapPin, Sun, Waves, Mountain } from "lucide-react";
+import { MapPin, Sun, Waves, Mountain, Star, ExternalLink } from "lucide-react";
+import { Button } from "./ui/button";
 
 const features = [
   {
@@ -20,6 +21,24 @@ const features = [
     icon: MapPin,
     title: "Authentic Greece",
     description: "Experience traditional Greek hospitality in charming villages untouched by mass tourism.",
+  },
+];
+
+const testimonials = [
+  {
+    name: "Holiday Guest",
+    review: "Wanting to circumnavigate the beautiful Greek Island that is Meganisi, we booked a boat with a Skipper through Discover Meganisi. The owner understood perfectly what we needed and organised an appropriately sized boat with a young but experienced Skipper who knew much about the island past and present. A perfect half day at sea in the sunshine!",
+    rating: 5,
+  },
+  {
+    name: "Experienced Boater",
+    review: "Another superb day with an excellent boat. Over the years we have hired many boats, but today's was the best I've hired. It was a fully equipped RHIB with SatNav, windlass anchor, and SUZUKI 250hp engine. Michalis goes the extra distance to ensure you have all the safety and local tips you need.",
+    rating: 5,
+  },
+  {
+    name: "The McGills",
+    review: "Skippered trip around Meganisi, Kastos and Kalamos. Visited the best coves and beaches for swimming. Fantastic lunch stop suggestion on Kalamos. Big thanks to Michalis for his flexibility in choosing the best weather day and to Skipper Gerry for his informative guide to the islands. Highly recommended!",
+    rating: 5,
   },
 ];
 
@@ -63,23 +82,83 @@ const About = () => {
           ))}
         </div>
 
-        {/* Story Section */}
+        {/* Company Story Section */}
         <div className="mt-20 bg-secondary rounded-3xl p-8 md:p-12 lg:p-16">
           <div className="max-w-4xl mx-auto text-center">
+            <p className="text-accent font-sans font-semibold tracking-widest uppercase mb-3">
+              Since 2017
+            </p>
             <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
               Your Island Adventure Partner
             </h3>
             <p className="text-muted-foreground text-lg font-sans leading-relaxed mb-6">
-              For over a decade, we've been helping visitors explore the magic of Meganisi. 
-              From cruising to hidden beaches accessible only by boat, to riding through scenic 
-              mountain trails on our ATVs – we provide everything you need for an unforgettable 
-              Greek island experience.
+              Founded in 2017, Discover Meganisi has grown from a small family venture into the island's 
+              most trusted rental service. With over 7 years of experience, we've helped thousands of 
+              visitors explore the magic of Meganisi and the surrounding Ionian islands.
             </p>
             <p className="text-muted-foreground text-lg font-sans leading-relaxed">
-              Our family-run business takes pride in offering well-maintained vehicles, 
-              local knowledge, and personalized service. We don't just rent – we share 
-              our beloved island with you.
+              Our family-run business takes pride in offering well-maintained vessels, expert local knowledge, 
+              and personalized service. Whether you're seeking a skippered cruise to hidden coves or an 
+              independent adventure on our boats – we share our beloved island with you.
             </p>
+          </div>
+        </div>
+
+        {/* Testimonials Section */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <p className="text-accent font-sans font-semibold tracking-widest uppercase mb-3">
+              Testimonials
+            </p>
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+              What Our Guests Say
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={testimonial.name}
+                className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-card transition-all duration-300 animate-fade-in opacity-0"
+                style={{ animationDelay: `${0.1 * (index + 1)}s` }}
+              >
+                {/* Stars */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-accent text-accent" />
+                  ))}
+                </div>
+                
+                {/* Review Text */}
+                <p className="text-muted-foreground font-sans leading-relaxed mb-6 italic">
+                  "{testimonial.review}"
+                </p>
+                
+                {/* Author */}
+                <p className="font-display font-semibold text-foreground">
+                  — {testimonial.name}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Google Reviews Button */}
+          <div className="text-center mt-12">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="group"
+            >
+              <a
+                href="https://www.google.com/maps/place/Discover+Meganisi+%7C+boat+rentals/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>See All Reviews on Google</span>
+                <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </Button>
           </div>
         </div>
       </div>
