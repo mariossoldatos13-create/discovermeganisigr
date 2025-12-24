@@ -23,16 +23,16 @@ const Hero = () => {
             Welcome to the Ionian Paradise
           </p>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-card mb-6 leading-tight animate-fade-in opacity-0" style={{ animationDelay: "0.4s" }}>
-            Explore Meganisi
+            Discover Meganisi
             <span className="block text-accent">Your Way</span>
           </h1>
           <p className="text-card/90 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-sans animate-fade-in opacity-0" style={{ animationDelay: "0.6s" }}>
-            Discover the hidden gem of the Seven Islands with our premium boats, RIBs, 
-            motorbikes, and ATVs. Your adventure in the crystal-clear Ionian waters awaits.
+            Explore the hidden gem of the Seven Islands with our premium boats, 
+            scooters, and ATVs. Your adventure in the crystal-clear Ionian waters awaits.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in opacity-0" style={{ animationDelay: "0.8s" }}>
             <Button variant="hero" size="xl" asChild>
-              <a href="#fleet">Explore Our Fleet</a>
+              <a href="/boats">Explore Our Boats</a>
             </Button>
             <Button variant="hero-outline" size="xl" asChild>
               <a href="#contact">Get in Touch</a>

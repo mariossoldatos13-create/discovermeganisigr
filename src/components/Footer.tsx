@@ -1,4 +1,6 @@
-import { Anchor, MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import Logo from "@/components/Logo";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,15 +11,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <Anchor className="w-8 h-8 text-accent" />
-              <span className="font-display text-xl font-bold text-card">
-                Meganisi Rentals
-              </span>
+            <div className="mb-4">
+              <Logo variant="dark" />
             </div>
             <p className="font-sans text-card/70 leading-relaxed mb-6 max-w-md">
               Your trusted partner for exploring the beautiful island of Meganisi. 
-              Premium boats, RIBs, motorbikes, and ATVs for unforgettable Greek island adventures.
+              Premium boats, scooters, and ATVs for unforgettable Greek island adventures.
             </p>
             <div className="flex gap-4">
               <a
@@ -47,16 +46,19 @@ const Footer = () => {
               Quick Links
             </h4>
             <nav className="flex flex-col gap-3">
-              <a href="#home" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
+              <a href="/" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
                 Home
               </a>
-              <a href="#about" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
+              <a href="/#about" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
                 About Meganisi
               </a>
-              <a href="#fleet" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
-                Our Fleet
-              </a>
-              <a href="#contact" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
+              <Link to="/boats" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
+                Boats
+              </Link>
+              <Link to="/road-vehicles" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
+                Road Vehicles
+              </Link>
+              <a href="/#contact" className="font-sans text-card/70 hover:text-accent transition-colors duration-300">
                 Contact Us
               </a>
             </nav>
@@ -94,7 +96,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-card/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-sans text-card/50 text-sm">
-            © {currentYear} Meganisi Rentals. All rights reserved.
+            © {currentYear} Discover Meganisi. All rights reserved.
           </p>
           <p className="font-sans text-card/50 text-sm">
             Made with ❤️ in the Ionian Islands
