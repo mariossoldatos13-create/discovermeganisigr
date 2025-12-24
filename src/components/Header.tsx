@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Anchor } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/Logo";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,10 +19,11 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#fleet", label: "Our Fleet" },
-    { href: "#contact", label: "Contact" },
+    { href: isHomePage ? "#home" : "/", label: "Home", isAnchor: isHomePage },
+    { href: isHomePage ? "#about" : "/#about", label: "About", isAnchor: isHomePage },
+    { href: "/boats", label: "Boats", isAnchor: false },
+    { href: "/road-vehicles", label: "Road Vehicles", isAnchor: false },
+    { href: isHomePage ? "#contact" : "/#contact", label: "Contact", isAnchor: isHomePage },
   ];
 
   return (
@@ -31,36 +36,35 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 group">
-          <Anchor
-            className={`w-8 h-8 transition-colors duration-300 ${
-              isScrolled ? "text-primary" : "text-card"
-            } group-hover:text-accent`}
-          />
-          <span
-            className={`font-display text-xl font-bold transition-colors duration-300 ${
-              isScrolled ? "text-foreground" : "text-card"
-            }`}
-          >
-            Meganisi Rentals
-          </span>
-        </a>
+        <Logo isScrolled={isScrolled} />
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`font-sans font-medium transition-colors duration-300 hover:text-accent ${
-                isScrolled ? "text-foreground" : "text-card"
-              }`}
-            >
-              {link.label}
-            </a>
+            link.isAnchor ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`font-sans font-medium transition-colors duration-300 hover:text-accent ${
+                  isScrolled ? "text-foreground" : "text-card"
+                }`}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={`font-sans font-medium transition-colors duration-300 hover:text-accent ${
+                  isScrolled ? "text-foreground" : "text-card"
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
           ))}
           <Button variant={isScrolled ? "hero" : "hero-outline"} size="lg" asChild>
-            <a href="#contact">Book Now</a>
+            <a href={isHomePage ? "#contact" : "/#contact"}>Book Now</a>
           </Button>
         </nav>
 
@@ -82,17 +86,28 @@ const Header = () => {
         <div className="md:hidden absolute top-full left-0 right-0 bg-card shadow-elevated animate-fade-in">
           <nav className="flex flex-col p-4 gap-4">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="font-sans font-medium text-foreground hover:text-accent py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.label}
-              </a>
+              link.isAnchor ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="font-sans font-medium text-foreground hover:text-accent py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="font-sans font-medium text-foreground hover:text-accent py-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
             <Button variant="hero" size="lg" asChild>
-              <a href="#contact">Book Now</a>
+              <a href={isHomePage ? "#contact" : "/#contact"}>Book Now</a>
             </Button>
           </nav>
         </div>
