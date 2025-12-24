@@ -105,6 +105,29 @@ const Boats = () => {
           </div>
         </section>
 
+        {/* Skipper Service Section */}
+        <section className="py-12 bg-secondary">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                <Ship className="w-8 h-8 text-primary" />
+              </div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Professional Skipper Service
+              </h2>
+              <p className="text-muted-foreground text-lg font-sans leading-relaxed mb-4">
+                Don't have a boating license? No problem! We offer experienced local skippers who know 
+                every hidden cove, the best swimming spots, and the perfect places for lunch. Our skippers 
+                are professional sailors with years of experience navigating the Ionian waters.
+              </p>
+              <p className="text-muted-foreground font-sans leading-relaxed">
+                Sit back, relax, and let our captain take you on an unforgettable journey while sharing 
+                stories and local knowledge about the islands. <span className="text-foreground font-medium">Skipper service available for an additional fee.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Boats Grid */}
         <section className="py-20 bg-sand">
           <div className="container mx-auto px-4">
