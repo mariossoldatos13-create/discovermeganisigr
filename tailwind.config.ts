@@ -19,7 +19,7 @@ export default {
   				'serif'
   			],
   			sans: [
-  				'Inter',
+  				'Montserrat',
   				'ui-sans-serif',
   				'system-ui',
   				'-apple-system',
@@ -32,7 +32,7 @@ export default {
   				'sans-serif'
   			],
   			serif: [
-  				'Lora',
+  				'Cormorant Garamond',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
@@ -41,7 +41,7 @@ export default {
   				'serif'
   			],
   			mono: [
-  				'Space Mono',
+  				'IBM Plex Mono',
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',
@@ -170,7 +170,7 @@ export default {
   					transform: 'scale(1)'
   				}
   			},
-  			'float': {
+  			float: {
   				'0%, 100%': {
   					transform: 'translateY(0)'
   				},
@@ -178,7 +178,7 @@ export default {
   					transform: 'translateY(-10px)'
   				}
   			},
-  			'wave': {
+  			wave: {
   				'0%, 100%': {
   					transform: 'translateX(0)'
   				},
@@ -194,8 +194,8 @@ export default {
   			'fade-in-left': 'fade-in-left 0.6s ease-out forwards',
   			'fade-in-right': 'fade-in-right 0.6s ease-out forwards',
   			'scale-in': 'scale-in 0.5s ease-out forwards',
-  			'float': 'float 3s ease-in-out infinite',
-  			'wave': 'wave 2s ease-in-out infinite'
+  			float: 'float 3s ease-in-out infinite',
+  			wave: 'wave 2s ease-in-out infinite'
   		},
   		boxShadow: {
   			'2xs': 'var(--shadow-2xs)',
