@@ -26,7 +26,7 @@ const features = [
 
 const testimonials = [
   {
-    name: "Holiday Guest",
+    name: "Andy Cope",
     review: "Wanting to circumnavigate the beautiful Greek Island that is Meganisi, we booked a boat with a Skipper through Discover Meganisi. The owner understood perfectly what we needed and organised an appropriately sized boat with a young but experienced Skipper who knew much about the island past and present. A perfect half day at sea in the sunshine!",
     rating: 5,
   },
@@ -92,14 +92,16 @@ const About = () => {
               Your Island Adventure Partner
             </h3>
             <p className="text-muted-foreground text-lg font-sans leading-relaxed mb-6">
-              Founded in 2017, Discover Meganisi has grown from a small family venture into the island's 
-              most trusted rental service. With over 7 years of experience, we've helped thousands of 
-              visitors explore the magic of Meganisi and the surrounding Ionian islands.
+              Founded in 2017 by Michalis, a born-and-raised Meganisi local, Discover Meganisi has grown 
+              from a small family venture into the island's most trusted rental service. With a lifetime 
+              spent on these waters as a fisherman and years of experience as a sailor, Michalis knows 
+              every hidden cove, secret beach, and the best spots the Ionian has to offer.
             </p>
             <p className="text-muted-foreground text-lg font-sans leading-relaxed">
-              Our family-run business takes pride in offering well-maintained vessels, expert local knowledge, 
-              and personalized service. Whether you're seeking a skippered cruise to hidden coves or an 
-              independent adventure on our boats – we share our beloved island with you.
+              His passion for the sea and deep love for his homeland drive everything we do. Whether you're 
+              seeking a skippered cruise to discover places only locals know, or an independent adventure 
+              on our well-maintained vessels – Michalis and his team share their beloved island with you, 
+              offering expert guidance, personalized service, and genuine Greek hospitality.
             </p>
           </div>
         </div>
