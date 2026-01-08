@@ -20,6 +20,9 @@ const translations: Translations = {
   "nav.contact": { en: "Contact", el: "Επικοινωνία" },
   "nav.bookNow": { en: "Book Now", el: "Κράτηση" },
   "nav.menu": { en: "Menu", el: "Μενού" },
+  "book.scooters": { en: "Scooters", el: "Σκούτερ" },
+  "book.atv": { en: "ATV", el: "ATV" },
+  "book.ebikes": { en: "E-Bikes", el: "Ηλεκτρικά Ποδήλατα" },
   
   // Hero
   "hero.subtitle": { en: "Discover Meganisi", el: "Ανακαλύψτε το Μεγανήσι" },
