@@ -13,6 +13,9 @@ import nikita4702 from "@/assets/nikita-470-2.jpg";
 import nikita4703 from "@/assets/nikita-470-3.jpg";
 import nikita4704 from "@/assets/nikita-470-4.jpg";
 import nikita5001 from "@/assets/nikita-500-1.jpg";
+import poseidon55m1 from "@/assets/poseidon-55m-1.jpg";
+import poseidon55m2 from "@/assets/poseidon-55m-2.jpg";
+import poseidon55m3 from "@/assets/poseidon-55m-3.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -97,7 +100,7 @@ const boats = [
     id: "poseidon-550",
     name: "Poseidon 5.5m",
     power: "115 HP",
-    image: boatImage,
+    images: [poseidon55m1, poseidon55m2, poseidon55m3],
     capacity: 8,
     license: true,
     licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
