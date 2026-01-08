@@ -14,7 +14,7 @@ const translations: Translations = {
   "nav.home": { en: "Home", el: "Αρχική" },
   "nav.about": { en: "About", el: "Σχετικά" },
   "nav.boats": { en: "Boats", el: "Σκάφη" },
-  "nav.ribs": { en: "RIBS", el: "Φουσκωτά" },
+  "nav.ribs": { en: "Ribs", el: "Φουσκωτά" },
   "nav.cruises": { en: "Cruises", el: "Κρουαζιέρες" },
   "nav.landAdventures": { en: "Land Adventures", el: "Περιπέτειες Ξηράς" },
   "nav.contact": { en: "Contact", el: "Επικοινωνία" },
@@ -33,9 +33,9 @@ const translations: Translations = {
   "fleet.boats": { en: "Boats", el: "Σκάφη" },
   "fleet.boats.subtitle": { en: "Explore by Sea", el: "Εξερευνήστε τη Θάλασσα" },
   "fleet.boats.description": { en: "From easy-to-handle 30HP boats requiring no license to powerful 115HP vessels for island hopping.", el: "Από εύχρηστα σκάφη 30HP χωρίς δίπλωμα μέχρι ισχυρά σκάφη 115HP για εξερεύνηση νησιών." },
-  "fleet.ribs": { en: "RIBS", el: "Φουσκωτά" },
+  "fleet.ribs": { en: "Ribs", el: "Φουσκωτά" },
   "fleet.ribs.subtitle": { en: "High Performance", el: "Υψηλές Επιδόσεις" },
-  "fleet.ribs.description": { en: "Powerful 250HP RIBS for the ultimate island hopping experience to Ithaca, Atokos, and beyond.", el: "Ισχυρά φουσκωτά 250HP για την απόλυτη εμπειρία εξερεύνησης νησιών στην Ιθάκη, τον Άτοκο και πέρα." },
+  "fleet.ribs.description": { en: "Powerful 250HP Ribs for the ultimate island hopping experience to Ithaca, Atokos, and beyond.", el: "Ισχυρά φουσκωτά 250HP για την απόλυτη εμπειρία εξερεύνησης νησιών στην Ιθάκη, τον Άτοκο και πέρα." },
   "fleet.cruises": { en: "Cruises", el: "Κρουαζιέρες" },
   "fleet.cruises.subtitle": { en: "Island Hopping", el: "Νησιωτικές Διαδρομές" },
   "fleet.cruises.description": { en: "Discover the magic of the Ionian islands. From the hidden beaches of Meganisi to the mythical shores of Ithaca.", el: "Ανακαλύψτε τη μαγεία των Ιονίων νησιών. Από τις κρυφές παραλίες του Μεγανησίου μέχρι τις μυθικές ακτές της Ιθάκης." },
@@ -70,9 +70,9 @@ const translations: Translations = {
   "boats.required": { en: "required", el: "απαιτείται" },
   
   // RIBs Page
-  "ribs.subtitle": { en: "RIBS Fleet", el: "Στόλος Φουσκωτών" },
-  "ribs.title": { en: "High Performance RIBS", el: "Φουσκωτά Υψηλών Επιδόσεων" },
-  "ribs.description": { en: "Our powerful 250HP RIBS open up the entire Ionian Sea. Visit Ithaca, Atokos, and explore distant islands in speed and comfort.", el: "Τα ισχυρά μας φουσκωτά 250HP ανοίγουν ολόκληρο το Ιόνιο Πέλαγος. Επισκεφθείτε την Ιθάκη, τον Άτοκο και εξερευνήστε μακρινά νησιά με ταχύτητα και άνεση." },
+  "ribs.subtitle": { en: "Ribs Fleet", el: "Στόλος Φουσκωτών" },
+  "ribs.title": { en: "High Performance Ribs", el: "Φουσκωτά Υψηλών Επιδόσεων" },
+  "ribs.description": { en: "Our powerful 250HP Ribs open up the entire Ionian Sea. Visit Ithaca, Atokos, and explore distant islands in speed and comfort.", el: "Τα ισχυρά μας φουσκωτά 250HP ανοίγουν ολόκληρο το Ιόνιο Πέλαγος. Επισκεφθείτε την Ιθάκη, τον Άτοκο και εξερευνήστε μακρινά νησιά με ταχύτητα και άνεση." },
   
   // Contact
   "contact.subtitle": { en: "Get in Touch", el: "Επικοινωνήστε μαζί μας" },
