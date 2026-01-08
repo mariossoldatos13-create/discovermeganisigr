@@ -10,7 +10,7 @@ import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 const boats = [
   {
     id: "nikita-470",
-    name: "Nikita 470",
+    name: "Nikita 4.70m",
     power: "30 HP",
     image: boatImage,
     capacity: 6,
@@ -24,6 +24,25 @@ const boats = [
     features: {
       en: ["No license required", "Fuel efficient", "Easy handling", "Shaded canopy"],
       el: ["Χωρίς δίπλωμα", "Οικονομικό", "Εύκολος χειρισμός", "Σκίαστρο"]
+    },
+  },
+  {
+    id: "nikita-sv499",
+    name: "Nikita SV4.99",
+    power: "115 HP",
+    image: boatImage,
+    capacity: 8,
+    license: true,
+    licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
+    destinations: ["Meganisi", "Kalamos", "Kastos"],
+    hours: "9:00 - 18:00",
+    description: {
+      en: "The Nikita SV4.99 combines reliability with performance. Perfect for adventurous families looking to explore the nearby islands in comfort and style.",
+      el: "Το Nikita SV4.99 συνδυάζει αξιοπιστία με επιδόσεις. Ιδανικό για τολμηρές οικογένειες που θέλουν να εξερευνήσουν τα κοντινά νησιά με άνεση και στυλ."
+    },
+    features: {
+      en: ["Fast & fuel efficient", "Island hopping capable", "Comfortable layout", "Sun protection"],
+      el: ["Γρήγορο & οικονομικό", "Ικανό για νησιοπήδημα", "Άνετη διάταξη", "Προστασία από ήλιο"]
     },
   },
   {
