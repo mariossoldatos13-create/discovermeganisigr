@@ -43,25 +43,6 @@ const boats = [
     },
   },
   {
-    id: "nikita-sv499",
-    name: "Nikita SV 4.99m",
-    power: "115 HP",
-    images: [nikitasv4991, nikitasv4992, nikitasv4993],
-    capacity: 8,
-    license: true,
-    licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
-    destinations: ["Meganisi", "Kalamos", "Kastos"],
-    hours: "9:00 - 18:00",
-    description: {
-      en: "The Nikita SV4.99 combines reliability with performance. Perfect for adventurous families looking to explore the nearby islands in comfort and style.",
-      el: "Το Nikita SV4.99 συνδυάζει αξιοπιστία με επιδόσεις. Ιδανικό για τολμηρές οικογένειες που θέλουν να εξερευνήσουν τα κοντινά νησιά με άνεση και στυλ."
-    },
-    features: {
-      en: ["Fast & fuel efficient", "Island hopping capable", "Comfortable layout", "Sun protection"],
-      el: ["Γρήγορο & οικονομικό", "Ικανό για νησιοπήδημα", "Άνετη διάταξη", "Προστασία από ήλιο"]
-    },
-  },
-  {
     id: "nikita-500",
     name: "Nikita 5.00m",
     power: "60 HP",
@@ -78,6 +59,25 @@ const boats = [
     features: {
       en: ["Easy to handle", "Comfortable seating", "Powerful engine", "Great stability"],
       el: ["Εύκολος χειρισμός", "Άνετα καθίσματα", "Ισχυρός κινητήρας", "Μεγάλη σταθερότητα"]
+    },
+  },
+  {
+    id: "nikita-sv499",
+    name: "Nikita SV 4.99m",
+    power: "115 HP",
+    images: [nikitasv4991, nikitasv4992, nikitasv4993],
+    capacity: 8,
+    license: true,
+    licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
+    destinations: ["Meganisi", "Kalamos", "Kastos"],
+    hours: "9:00 - 18:00",
+    description: {
+      en: "The Nikita SV4.99 combines reliability with performance. Perfect for adventurous families looking to explore the nearby islands in comfort and style.",
+      el: "Το Nikita SV4.99 συνδυάζει αξιοπιστία με επιδόσεις. Ιδανικό για τολμηρές οικογένειες που θέλουν να εξερευνήσουν τα κοντινά νησιά με άνεση και στυλ."
+    },
+    features: {
+      en: ["Fast & fuel efficient", "Island hopping capable", "Comfortable layout", "Sun protection"],
+      el: ["Γρήγορο & οικονομικό", "Ικανό για νησιοπήδημα", "Άνετη διάταξη", "Προστασία από ήλιο"]
     },
   },
   {
