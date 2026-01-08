@@ -269,12 +269,6 @@ const Ribs = () => {
                 alt={`${lightboxRib.name} - ${getImageIndex(lightboxRib.id) + 1}`}
                 className="w-full h-auto rounded-lg"
               />
-              <button
-                onClick={() => setLightboxRib(null)}
-                className="absolute top-2 right-2 w-10 h-10 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
               {lightboxRib.images.length > 1 && (
                 <>
                   <button
