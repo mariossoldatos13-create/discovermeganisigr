@@ -2,13 +2,18 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Bike, Users, MapPin, Zap, Battery } from "lucide-react";
+import { Bike, Users, MapPin, Zap, Battery, ChevronLeft, ChevronRight, X } from "lucide-react";
 import motorbikeImage from "@/assets/motorbike.jpg";
 import atvImage from "@/assets/atv.jpg";
 import ebikeMountainImage from "@/assets/ebike-mountain.jpg";
 import ebikeCityImage from "@/assets/ebike-city.jpg";
+import mountainEbike1 from "@/assets/mountain-ebike-1.jpg";
+import mountainEbike2 from "@/assets/mountain-ebike-2.jpg";
+import mountainEbike3 from "@/assets/mountain-ebike-3.jpg";
+import mountainEbike4 from "@/assets/mountain-ebike-4.jpg";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const vehicles = [
   {
@@ -45,7 +50,7 @@ const vehicles = [
     id: "ebike-mountain",
     name: "E-Bike Mountain",
     type: "Electric Bike",
-    image: ebikeMountainImage,
+    images: [mountainEbike1, mountainEbike2, mountainEbike3, mountainEbike4],
     capacity: 1,
     terrain: "All terrain capable",
     description: "Conquer the hills of Meganisi effortlessly with our electric mountain bike. Perfect for adventurous riders who want to explore off the beaten path while enjoying eco-friendly transportation.",
@@ -68,6 +73,33 @@ const vehicles = [
 const LandAdventures = () => {
   const { t, language } = useLanguage();
   const [selectedVehicle, setSelectedVehicle] = useState<string | null>(null);
+  const [imageIndexes, setImageIndexes] = useState<Record<string, number>>({});
+  const [lightboxVehicle, setLightboxVehicle] = useState<{ id: string; images: string[]; name: string } | null>(null);
+
+  const getImageIndex = (vehicleId: string) => imageIndexes[vehicleId] || 0;
+  
+  const nextImage = (vehicleId: string, totalImages: number, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setImageIndexes(prev => ({
+      ...prev,
+      [vehicleId]: (getImageIndex(vehicleId) + 1) % totalImages
+    }));
+  };
+  
+  const prevImage = (vehicleId: string, totalImages: number, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setImageIndexes(prev => ({
+      ...prev,
+      [vehicleId]: (getImageIndex(vehicleId) - 1 + totalImages) % totalImages
+    }));
+  };
+
+  const openLightbox = (vehicle: { id: string; images?: string[]; image?: string; name: string }) => {
+    if (vehicle.images && vehicle.images.length > 0) {
+      setLightboxVehicle({ id: vehicle.id, images: vehicle.images, name: vehicle.name });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -100,13 +132,53 @@ const LandAdventures = () => {
                 >
                   {/* Image */}
                   <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={vehicle.image}
-                      alt={vehicle.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent" />
-                    <div className="absolute top-4 right-4 flex gap-2">
+                    {vehicle.images ? (
+                      <>
+                        <div 
+                          className="w-full h-full cursor-pointer"
+                          onClick={() => openLightbox(vehicle)}
+                        >
+                          <img
+                            src={vehicle.images[getImageIndex(vehicle.id)]}
+                            alt={`${vehicle.name} - ${getImageIndex(vehicle.id) + 1}`}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        </div>
+                        {vehicle.images.length > 1 && (
+                          <>
+                            <button
+                              onClick={(e) => prevImage(vehicle.id, vehicle.images!.length, e)}
+                              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                            >
+                              <ChevronLeft className="w-5 h-5" />
+                            </button>
+                            <button
+                              onClick={(e) => nextImage(vehicle.id, vehicle.images!.length, e)}
+                              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                            >
+                              <ChevronRight className="w-5 h-5" />
+                            </button>
+                            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                              {vehicle.images.map((_, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [vehicle.id]: idx })); }}
+                                  className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(vehicle.id) ? 'bg-card' : 'bg-card/50'}`}
+                                />
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      <img
+                        src={vehicle.image}
+                        alt={vehicle.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent pointer-events-none" />
+                    <div className="absolute top-4 right-4 flex gap-2 pointer-events-none">
                       {vehicle.isElectric && (
                         <span className="px-2 py-1 bg-green-500 text-card text-xs font-sans font-semibold rounded-full flex items-center gap-1">
                           <Zap className="w-3 h-3" />
@@ -117,7 +189,7 @@ const LandAdventures = () => {
                         {vehicle.type}
                       </span>
                     </div>
-                    <div className="absolute bottom-4 left-4">
+                    <div className="absolute bottom-4 left-4 pointer-events-none">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-xl bg-card/90 backdrop-blur-sm flex items-center justify-center">
                           {vehicle.isElectric ? (
@@ -185,6 +257,59 @@ const LandAdventures = () => {
         vehicleName={selectedVehicle || ""}
         vehicleType="land"
       />
+
+      {/* Lightbox Gallery */}
+      <Dialog open={!!lightboxVehicle} onOpenChange={(open) => !open && setLightboxVehicle(null)}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95 border-none">
+          {lightboxVehicle && (
+            <div className="relative w-full h-[90vh] flex items-center justify-center">
+              <button
+                onClick={() => setLightboxVehicle(null)}
+                className="absolute top-4 right-4 w-10 h-10 bg-card/20 backdrop-blur-sm rounded-full flex items-center justify-center text-card hover:bg-card/40 transition-colors z-20"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              
+              <img
+                src={lightboxVehicle.images[getImageIndex(lightboxVehicle.id)]}
+                alt={`${lightboxVehicle.name} - ${getImageIndex(lightboxVehicle.id) + 1}`}
+                className="max-w-full max-h-full object-contain"
+              />
+              
+              {lightboxVehicle.images.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => prevImage(lightboxVehicle.id, lightboxVehicle.images.length, e)}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-card/20 backdrop-blur-sm rounded-full flex items-center justify-center text-card hover:bg-card/40 transition-colors"
+                  >
+                    <ChevronLeft className="w-8 h-8" />
+                  </button>
+                  <button
+                    onClick={(e) => nextImage(lightboxVehicle.id, lightboxVehicle.images.length, e)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-card/20 backdrop-blur-sm rounded-full flex items-center justify-center text-card hover:bg-card/40 transition-colors"
+                  >
+                    <ChevronRight className="w-8 h-8" />
+                  </button>
+                  
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                    {lightboxVehicle.images.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setImageIndexes(prev => ({ ...prev, [lightboxVehicle.id]: idx }))}
+                        className={`w-3 h-3 rounded-full transition-colors ${idx === getImageIndex(lightboxVehicle.id) ? 'bg-card' : 'bg-card/50'}`}
+                      />
+                    ))}
+                  </div>
+                  
+                  <div className="absolute bottom-6 right-6 text-card/80 font-sans text-sm">
+                    {getImageIndex(lightboxVehicle.id) + 1} / {lightboxVehicle.images.length}
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
