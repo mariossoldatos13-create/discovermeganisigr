@@ -28,12 +28,10 @@ const Header = () => {
 
   const navLinks = [
     { href: isHomePage ? "#home" : "/", label: t("nav.home"), isAnchor: isHomePage },
-    { href: isHomePage ? "#about" : "/#about", label: t("nav.about"), isAnchor: isHomePage },
     { href: "/boats", label: t("nav.boats"), isAnchor: false },
     { href: "/ribs", label: t("nav.ribs"), isAnchor: false },
     { href: "/cruises", label: t("nav.cruises"), isAnchor: false },
     { href: "/land-adventures", label: t("nav.landAdventures"), isAnchor: false },
-    { href: isHomePage ? "#contact" : "/#contact", label: t("nav.contact"), isAnchor: isHomePage },
   ];
 
   return (
