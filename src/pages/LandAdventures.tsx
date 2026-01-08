@@ -7,6 +7,9 @@ import motorbikeImage from "@/assets/motorbike.jpg";
 import scooter50cc from "@/assets/scooter-50cc.jpg";
 import scooter125cc from "@/assets/scooter-125cc.jpg";
 import atvImage from "@/assets/atv.jpg";
+import atv1 from "@/assets/atv-1.jpg";
+import atv2 from "@/assets/atv-2.jpg";
+import atv3 from "@/assets/atv-3.jpg";
 import ebikeMountainImage from "@/assets/ebike-mountain.jpg";
 import ebikeCityImage from "@/assets/ebike-city.jpg";
 import mountainEbike1 from "@/assets/mountain-ebike-1.jpg";
@@ -48,7 +51,7 @@ const vehicles = [
     id: "kymco-450",
     name: "Kymco 450cc ATV",
     type: "ATV / Quad",
-    image: atvImage,
+    images: [atv1, atv2, atv3],
     capacity: 2,
     terrain: "All terrain capable",
     description: "Take the road less traveled with our powerful Kymco ATV. Explore scenic mountain trails and discover viewpoints most tourists never see.",
