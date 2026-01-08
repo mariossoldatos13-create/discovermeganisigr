@@ -11,6 +11,12 @@ import mountainEbike1 from "@/assets/mountain-ebike-1.jpg";
 import mountainEbike2 from "@/assets/mountain-ebike-2.jpg";
 import mountainEbike3 from "@/assets/mountain-ebike-3.jpg";
 import mountainEbike4 from "@/assets/mountain-ebike-4.jpg";
+import cityEbike1 from "@/assets/city-ebike-1.jpg";
+import cityEbike2 from "@/assets/city-ebike-2.jpg";
+import cityEbike3 from "@/assets/city-ebike-3.jpg";
+import cityEbike4 from "@/assets/city-ebike-4.jpg";
+import cityEbike5 from "@/assets/city-ebike-5.jpg";
+import cityEbike6 from "@/assets/city-ebike-6.jpg";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -61,7 +67,7 @@ const vehicles = [
     id: "ebike-city",
     name: "E-Bike City",
     type: "Electric Bike",
-    image: ebikeCityImage,
+    images: [cityEbike1, cityEbike2, cityEbike3, cityEbike4, cityEbike5, cityEbike6],
     capacity: 1,
     terrain: "Paved roads only",
     description: "Cruise through the picturesque villages and coastal roads with our comfortable city e-bike. The perfect blend of convenience and sustainability for relaxed island exploration.",
