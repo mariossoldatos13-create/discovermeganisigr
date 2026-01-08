@@ -2,17 +2,21 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Ship, Users, Clock, MapPin, Gauge, Anchor } from "lucide-react";
+import { Ship, Users, Clock, MapPin, Gauge, Anchor, ChevronLeft, ChevronRight, X } from "lucide-react";
 import ribBoatImage from "@/assets/rib-boat.jpg";
+import gene6701 from "@/assets/gene-670-1.jpg";
+import gene6702 from "@/assets/gene-670-2.jpg";
+import gene6703 from "@/assets/gene-670-3.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const ribs = [
   {
     id: "gene-670-rib",
     name: "Gene 670 RIB",
     power: "250 HP",
-    image: ribBoatImage,
+    images: [gene6701, gene6702, gene6703],
     capacity: 9,
     license: true,
     licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
@@ -51,6 +55,33 @@ const ribs = [
 const Ribs = () => {
   const { language, t } = useLanguage();
   const [selectedRib, setSelectedRib] = useState<string | null>(null);
+  const [imageIndexes, setImageIndexes] = useState<Record<string, number>>({});
+  const [lightboxRib, setLightboxRib] = useState<{ id: string; images: string[]; name: string } | null>(null);
+
+  const getImageIndex = (ribId: string) => imageIndexes[ribId] || 0;
+  
+  const nextImage = (ribId: string, totalImages: number, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setImageIndexes(prev => ({
+      ...prev,
+      [ribId]: (getImageIndex(ribId) + 1) % totalImages
+    }));
+  };
+  
+  const prevImage = (ribId: string, totalImages: number, e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    setImageIndexes(prev => ({
+      ...prev,
+      [ribId]: (getImageIndex(ribId) - 1 + totalImages) % totalImages
+    }));
+  };
+
+  const openLightbox = (rib: { id: string; images?: string[]; image?: string; name: string }) => {
+    if (rib.images && rib.images.length > 0) {
+      setLightboxRib({ id: rib.id, images: rib.images, name: rib.name });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -109,11 +140,51 @@ const Ribs = () => {
                 >
                   {/* Image */}
                   <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={rib.image}
-                      alt={rib.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                    {rib.images ? (
+                      <>
+                        <div 
+                          className="w-full h-full cursor-pointer"
+                          onClick={() => openLightbox(rib)}
+                        >
+                          <img
+                            src={rib.images[getImageIndex(rib.id)]}
+                            alt={`${rib.name} - ${getImageIndex(rib.id) + 1}`}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        </div>
+                        {rib.images.length > 1 && (
+                          <>
+                            <button
+                              onClick={(e) => prevImage(rib.id, rib.images!.length, e)}
+                              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                            >
+                              <ChevronLeft className="w-5 h-5" />
+                            </button>
+                            <button
+                              onClick={(e) => nextImage(rib.id, rib.images!.length, e)}
+                              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                            >
+                              <ChevronRight className="w-5 h-5" />
+                            </button>
+                            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                              {rib.images.map((_, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [rib.id]: idx })); }}
+                                  className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(rib.id) ? 'bg-card' : 'bg-card/50'}`}
+                                />
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      <img
+                        src={rib.image}
+                        alt={rib.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent" />
                     <div className="absolute top-4 right-4 flex gap-2">
                       <span className="px-3 py-1 bg-primary text-card text-sm font-sans font-semibold rounded-full">
@@ -192,6 +263,52 @@ const Ribs = () => {
         vehicleName={selectedRib || ""}
         vehicleType="rib"
       />
+
+      {/* Lightbox */}
+      <Dialog open={!!lightboxRib} onOpenChange={(open) => !open && setLightboxRib(null)}>
+        <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
+          {lightboxRib && (
+            <div className="relative">
+              <img
+                src={lightboxRib.images[getImageIndex(lightboxRib.id)]}
+                alt={`${lightboxRib.name} - ${getImageIndex(lightboxRib.id) + 1}`}
+                className="w-full h-auto rounded-lg"
+              />
+              <button
+                onClick={() => setLightboxRib(null)}
+                className="absolute top-2 right-2 w-10 h-10 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              {lightboxRib.images.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => prevImage(lightboxRib.id, lightboxRib.images.length, e)}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={(e) => nextImage(lightboxRib.id, lightboxRib.images.length, e)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    {lightboxRib.images.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setImageIndexes(prev => ({ ...prev, [lightboxRib.id]: idx }))}
+                        className={`w-3 h-3 rounded-full transition-colors ${idx === getImageIndex(lightboxRib.id) ? 'bg-card' : 'bg-card/50'}`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
