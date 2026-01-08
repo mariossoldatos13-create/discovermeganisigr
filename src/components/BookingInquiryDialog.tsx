@@ -24,10 +24,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Mail, MessageCircle, Phone, CalendarIcon, ArrowLeft, Send, Info } from "lucide-react";
+import { Mail, MessageCircle, Phone, CalendarIcon, ArrowLeft, Send, Info, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 type ContactMethod = "email" | "whatsapp" | "viber" | null;
 type VehicleType = "boat" | "rib" | "land";
@@ -79,7 +81,7 @@ const BookingInquiryDialog = ({
   const [dropoffDate, setDropoffDate] = useState<Date>();
   const [numberOfPeople, setNumberOfPeople] = useState("");
   const [notes, setNotes] = useState("");
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const showPeopleField = vehicleType === "boat" || vehicleType === "rib";
 
   const resetForm = () => {
@@ -131,24 +133,69 @@ const BookingInquiryDialog = ({
     return lines.join("\n");
   };
 
-  const handleSubmit = () => {
-    const message = buildMessage();
-    const encodedMessage = encodeURIComponent(message);
-    const phoneNumber = "306974000000"; // Replace with actual phone number
+  const handleSubmit = async () => {
+    if (!pickupDate || !dropoffDate || !contactMethod) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Send email notification to business via edge function
+      const { data, error } = await supabase.functions.invoke('send-booking-inquiry', {
+        body: {
+          vehicleName,
+          customerName: name,
+          customerEmail: email,
+          customerPhone: phoneNumber,
+          countryCode,
+          pickupDate: format(pickupDate, "PPP"),
+          dropoffDate: format(dropoffDate, "PPP"),
+          numberOfPeople: showPeopleField ? numberOfPeople : undefined,
+          notes,
+          contactMethod,
+        },
+      });
 
-    switch (contactMethod) {
-      case "email":
-        window.location.href = `mailto:info@meganisi-rentals.com?subject=${encodeURIComponent(`Inquiry: ${vehicleName}`)}&body=${encodedMessage}`;
-        break;
-      case "whatsapp":
-        window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
-        break;
-      case "viber":
-        window.open(`viber://chat?number=${phoneNumber}&text=${encodedMessage}`, "_blank");
-        break;
+      if (error) {
+        console.error("Error sending inquiry:", error);
+        toast.error(
+          language === "en" 
+            ? "Failed to send inquiry. Please try again." 
+            : "Αποτυχία αποστολής. Παρακαλώ δοκιμάστε ξανά."
+        );
+        setIsSubmitting(false);
+        return;
+      }
+
+      console.log("Inquiry sent successfully:", data);
+
+      // For WhatsApp/Viber, also open the messaging app
+      const businessPhone = "306974000000"; // Replace with actual business phone number
+      const message = buildMessage();
+      const encodedMessage = encodeURIComponent(message);
+
+      if (contactMethod === "whatsapp") {
+        window.open(`https://wa.me/${businessPhone}?text=${encodedMessage}`, "_blank");
+      } else if (contactMethod === "viber") {
+        window.open(`viber://chat?number=${businessPhone}&text=${encodedMessage}`, "_blank");
+      }
+
+      toast.success(
+        language === "en" 
+          ? "Your inquiry has been sent successfully! We will contact you soon." 
+          : "Το αίτημά σας εστάλη επιτυχώς! Θα επικοινωνήσουμε σύντομα."
+      );
+
+      handleClose();
+    } catch (err) {
+      console.error("Error:", err);
+      toast.error(
+        language === "en" 
+          ? "Something went wrong. Please try again." 
+          : "Κάτι πήγε στραβά. Παρακαλώ δοκιμάστε ξανά."
+      );
+    } finally {
+      setIsSubmitting(false);
     }
-
-    handleClose();
   };
 
   const contactMethods = [
@@ -428,6 +475,7 @@ const BookingInquiryDialog = ({
                 <Button
                   onClick={handleSubmit}
                   disabled={
+                    isSubmitting ||
                     !name || 
                     !pickupDate || 
                     !dropoffDate || 
@@ -436,13 +484,22 @@ const BookingInquiryDialog = ({
                   className="w-full mt-4 h-12 text-base"
                   variant="contact"
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  {language === "en" ? "Send Inquiry via" : "Αποστολή μέσω"}{" "}
-                  {contactMethod === "email"
-                    ? "Email"
-                    : contactMethod === "whatsapp"
-                    ? "WhatsApp"
-                    : "Viber"}
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      {language === "en" ? "Sending..." : "Αποστολή..."}
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2" />
+                      {language === "en" ? "Send Inquiry via" : "Αποστολή μέσω"}{" "}
+                      {contactMethod === "email"
+                        ? "Email"
+                        : contactMethod === "whatsapp"
+                        ? "WhatsApp"
+                        : "Viber"}
+                    </>
+                  )}
                 </Button>
               </div>
             )}
