@@ -17,6 +17,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Mail, MessageCircle, Phone, CalendarIcon, ArrowLeft, Send, Info } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
@@ -24,6 +31,30 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 
 type ContactMethod = "email" | "whatsapp" | "viber" | null;
 type VehicleType = "boat" | "rib" | "land";
+
+const countryCodes = [
+  { code: "+30", country: "Greece", flag: "🇬🇷" },
+  { code: "+1", country: "USA/Canada", flag: "🇺🇸" },
+  { code: "+44", country: "UK", flag: "🇬🇧" },
+  { code: "+49", country: "Germany", flag: "🇩🇪" },
+  { code: "+33", country: "France", flag: "🇫🇷" },
+  { code: "+39", country: "Italy", flag: "🇮🇹" },
+  { code: "+34", country: "Spain", flag: "🇪🇸" },
+  { code: "+31", country: "Netherlands", flag: "🇳🇱" },
+  { code: "+32", country: "Belgium", flag: "🇧🇪" },
+  { code: "+41", country: "Switzerland", flag: "🇨🇭" },
+  { code: "+43", country: "Austria", flag: "🇦🇹" },
+  { code: "+45", country: "Denmark", flag: "🇩🇰" },
+  { code: "+46", country: "Sweden", flag: "🇸🇪" },
+  { code: "+47", country: "Norway", flag: "🇳🇴" },
+  { code: "+48", country: "Poland", flag: "🇵🇱" },
+  { code: "+61", country: "Australia", flag: "🇦🇺" },
+  { code: "+64", country: "New Zealand", flag: "🇳🇿" },
+  { code: "+353", country: "Ireland", flag: "🇮🇪" },
+  { code: "+357", country: "Cyprus", flag: "🇨🇾" },
+  { code: "+90", country: "Turkey", flag: "🇹🇷" },
+  { code: "+972", country: "Israel", flag: "🇮🇱" },
+];
 
 interface BookingInquiryDialogProps {
   open: boolean;
@@ -42,6 +73,8 @@ const BookingInquiryDialog = ({
   const [contactMethod, setContactMethod] = useState<ContactMethod>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [countryCode, setCountryCode] = useState("+30");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [pickupDate, setPickupDate] = useState<Date>();
   const [dropoffDate, setDropoffDate] = useState<Date>();
   const [numberOfPeople, setNumberOfPeople] = useState("");
@@ -53,6 +86,8 @@ const BookingInquiryDialog = ({
     setContactMethod(null);
     setName("");
     setEmail("");
+    setCountryCode("+30");
+    setPhoneNumber("");
     setPickupDate(undefined);
     setDropoffDate(undefined);
     setNumberOfPeople("");
@@ -72,8 +107,13 @@ const BookingInquiryDialog = ({
     const lines = [
       `${language === "en" ? "Inquiry for" : "Ενδιαφέρον για"}: ${vehicleName}`,
       `${language === "en" ? "Name" : "Όνομα"}: ${name}`,
-      `${language === "en" ? "Email" : "Email"}: ${email}`,
     ];
+
+    if (contactMethod === "email") {
+      lines.push(`${language === "en" ? "Email" : "Email"}: ${email}`);
+    } else {
+      lines.push(`${language === "en" ? "Phone" : "Τηλέφωνο"}: ${countryCode}${phoneNumber}`);
+    }
 
     if (pickupDate) {
       lines.push(`${language === "en" ? "Pick-up Date" : "Ημ/νία Παραλαβής"}: ${format(pickupDate, "PPP")}`);
@@ -220,20 +260,56 @@ const BookingInquiryDialog = ({
                   />
                 </div>
 
-                {/* Email */}
-                <div className="grid gap-2">
-                  <Label htmlFor="email">
-                    {language === "en" ? "Your Email" : "Το Email σας"} *
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder={language === "en" ? "Enter your email" : "Εισάγετε το email σας"}
-                    className="h-12"
-                  />
-                </div>
+                {/* Email (only for email method) */}
+                {contactMethod === "email" && (
+                  <div className="grid gap-2">
+                    <Label htmlFor="email">
+                      {language === "en" ? "Your Email" : "Το Email σας"} *
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder={language === "en" ? "Enter your email" : "Εισάγετε το email σας"}
+                      className="h-12"
+                    />
+                  </div>
+                )}
+
+                {/* Phone (for WhatsApp/Viber) */}
+                {(contactMethod === "whatsapp" || contactMethod === "viber") && (
+                  <div className="grid gap-2">
+                    <Label htmlFor="phone">
+                      {language === "en" ? "Your Phone Number" : "Το Τηλέφωνό σας"} *
+                    </Label>
+                    <div className="flex gap-2">
+                      <Select value={countryCode} onValueChange={setCountryCode}>
+                        <SelectTrigger className="w-[140px] h-12">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent className="max-h-[300px]">
+                          {countryCodes.map((country) => (
+                            <SelectItem key={country.code} value={country.code}>
+                              <span className="flex items-center gap-2">
+                                <span>{country.flag}</span>
+                                <span>{country.code}</span>
+                              </span>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
+                        placeholder={language === "en" ? "Phone number" : "Αριθμός τηλεφώνου"}
+                        className="flex-1 h-12"
+                      />
+                    </div>
+                  </div>
+                )}
 
                 {/* Pick-up Date */}
                 <div className="grid gap-2">
@@ -351,7 +427,12 @@ const BookingInquiryDialog = ({
                 {/* Submit Button */}
                 <Button
                   onClick={handleSubmit}
-                  disabled={!name || !email || !pickupDate || !dropoffDate}
+                  disabled={
+                    !name || 
+                    !pickupDate || 
+                    !dropoffDate || 
+                    (contactMethod === "email" ? !email : !phoneNumber)
+                  }
                   className="w-full mt-4 h-12 text-base"
                   variant="contact"
                 >
