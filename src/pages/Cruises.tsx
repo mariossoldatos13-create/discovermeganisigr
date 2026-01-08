@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Anchor, Clock, Camera, MapPin, Play, Image, X, ChevronLeft, ChevronRight } from "lucide-react";
-import cruiseMeganisi from "@/assets/cruise-meganisi.jpg";
+import cruiseMeganisiMain from "@/assets/cruise-meganisi-main.jpg";
 import cruiseMeganisi2 from "@/assets/cruise-meganisi-2.jpg";
 import cruiseMeganisi3 from "@/assets/cruise-meganisi-3.jpg";
 import cruiseMeganisi4 from "@/assets/cruise-meganisi-4.jpg";
@@ -17,7 +17,7 @@ const cruises = [
   {
     id: "meganisi",
     name: "Meganisi Island",
-    images: [cruiseMeganisi, cruiseMeganisi2, cruiseMeganisi3, cruiseMeganisi4, cruiseMeganisi5],
+    images: [cruiseMeganisiMain, cruiseMeganisi2, cruiseMeganisi3, cruiseMeganisi4, cruiseMeganisi5],
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Hidden beaches", "Sea caves", "Traditional villages", "Crystal waters"],
     description: "Discover the hidden gem of the Ionian Sea. Meganisi, with its three charming villages of Vathi, Spartochori, and Katomeri, offers an authentic Greek island experience. Explore secluded beaches accessible only by boat, swim in crystal-clear turquoise waters, and discover mysterious sea caves carved by centuries of waves. Stop at local tavernas for fresh seafood and experience the warm hospitality of the islanders.",
