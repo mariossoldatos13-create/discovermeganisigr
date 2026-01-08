@@ -2,8 +2,12 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Ship, Users, Clock, MapPin, Gauge, FileCheck, Shield, LifeBuoy, Phone } from "lucide-react";
+import { Ship, Users, Clock, MapPin, Gauge, FileCheck, Shield, LifeBuoy, Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import boatImage from "@/assets/boat.jpg";
+import nikita55m1 from "@/assets/nikita-55m-1.jpg";
+import nikita55m2 from "@/assets/nikita-55m-2.jpg";
+import nikita55m3 from "@/assets/nikita-55m-3.jpg";
+import nikita55m4 from "@/assets/nikita-55m-4.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 
@@ -68,7 +72,7 @@ const boats = [
     id: "nikita-550",
     name: "Nikita 5.5m",
     power: "115 HP",
-    image: boatImage,
+    images: [nikita55m1, nikita55m2, nikita55m3, nikita55m4],
     capacity: 9,
     license: true,
     licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
@@ -107,6 +111,24 @@ const boats = [
 const Boats = () => {
   const { language, t } = useLanguage();
   const [selectedBoat, setSelectedBoat] = useState<string | null>(null);
+  const [imageIndexes, setImageIndexes] = useState<Record<string, number>>({});
+
+  const getImageIndex = (boatId: string) => imageIndexes[boatId] || 0;
+  
+  const nextImage = (boatId: string, totalImages: number) => {
+    setImageIndexes(prev => ({
+      ...prev,
+      [boatId]: (getImageIndex(boatId) + 1) % totalImages
+    }));
+  };
+  
+  const prevImage = (boatId: string, totalImages: number) => {
+    setImageIndexes(prev => ({
+      ...prev,
+      [boatId]: (getImageIndex(boatId) - 1 + totalImages) % totalImages
+    }));
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -192,11 +214,46 @@ const Boats = () => {
                 >
                   {/* Image */}
                   <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={boat.image}
-                      alt={boat.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                    {boat.images ? (
+                      <>
+                        <img
+                          src={boat.images[getImageIndex(boat.id)]}
+                          alt={`${boat.name} - ${getImageIndex(boat.id) + 1}`}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        {boat.images.length > 1 && (
+                          <>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); prevImage(boat.id, boat.images!.length); }}
+                              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                            >
+                              <ChevronLeft className="w-5 h-5" />
+                            </button>
+                            <button
+                              onClick={(e) => { e.stopPropagation(); nextImage(boat.id, boat.images!.length); }}
+                              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                            >
+                              <ChevronRight className="w-5 h-5" />
+                            </button>
+                            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                              {boat.images.map((_, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [boat.id]: idx })); }}
+                                  className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(boat.id) ? 'bg-card' : 'bg-card/50'}`}
+                                />
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      <img
+                        src={boat.image}
+                        alt={boat.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent" />
                     <div className="absolute top-4 right-4 flex gap-2">
                       <span className="px-3 py-1 bg-primary text-card text-sm font-sans font-semibold rounded-full">
