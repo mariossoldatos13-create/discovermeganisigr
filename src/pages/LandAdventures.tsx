@@ -119,8 +119,8 @@ const LandAdventures = () => {
         {/* Hero Section */}
         <section className="relative pt-32 pb-20">
           <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${landAdventuresHero})` }}
+            className="absolute inset-0 bg-cover bg-center md:bg-bottom"
+            style={{ backgroundImage: `url(${landAdventuresHero})`, backgroundSize: 'cover', backgroundPosition: 'center 70%' }}
           />
           <div className="absolute inset-0 bg-foreground/60" />
           <div className="container mx-auto px-4 text-center relative z-10">
