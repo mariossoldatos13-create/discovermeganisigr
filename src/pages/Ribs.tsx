@@ -259,31 +259,40 @@ const Ribs = () => {
         vehicleType="rib"
       />
 
-      {/* Lightbox */}
+      {/* Lightbox Gallery */}
       <Dialog open={!!lightboxRib} onOpenChange={(open) => !open && setLightboxRib(null)}>
-        <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
+        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95 border-none">
           {lightboxRib && (
-            <div className="relative">
+            <div className="relative w-full h-[90vh] flex items-center justify-center">
+              <button
+                onClick={() => setLightboxRib(null)}
+                className="absolute top-4 right-4 w-10 h-10 bg-card/20 backdrop-blur-sm rounded-full flex items-center justify-center text-card hover:bg-card/40 transition-colors z-20"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              
               <img
                 src={lightboxRib.images[getImageIndex(lightboxRib.id)]}
                 alt={`${lightboxRib.name} - ${getImageIndex(lightboxRib.id) + 1}`}
-                className="w-full h-auto rounded-lg"
+                className="max-w-full max-h-full object-contain"
               />
+              
               {lightboxRib.images.length > 1 && (
                 <>
                   <button
                     onClick={(e) => prevImage(lightboxRib.id, lightboxRib.images.length, e)}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-card/20 backdrop-blur-sm rounded-full flex items-center justify-center text-card hover:bg-card/40 transition-colors"
                   >
-                    <ChevronLeft className="w-6 h-6" />
+                    <ChevronLeft className="w-8 h-8" />
                   </button>
                   <button
                     onClick={(e) => nextImage(lightboxRib.id, lightboxRib.images.length, e)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-card/20 backdrop-blur-sm rounded-full flex items-center justify-center text-card hover:bg-card/40 transition-colors"
                   >
-                    <ChevronRight className="w-6 h-6" />
+                    <ChevronRight className="w-8 h-8" />
                   </button>
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
                     {lightboxRib.images.map((_, idx) => (
                       <button
                         key={idx}
@@ -291,6 +300,10 @@ const Ribs = () => {
                         className={`w-3 h-3 rounded-full transition-colors ${idx === getImageIndex(lightboxRib.id) ? 'bg-card' : 'bg-card/50'}`}
                       />
                     ))}
+                  </div>
+                  
+                  <div className="absolute bottom-6 right-6 text-card/80 font-sans text-sm">
+                    {getImageIndex(lightboxRib.id) + 1} / {lightboxRib.images.length}
                   </div>
                 </>
               )}
