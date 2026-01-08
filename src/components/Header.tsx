@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown, Ship, Anchor, Bike, Car } from "lucide-react";
+import { Menu, X, ChevronDown, Ship, Anchor, Mountain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
 import { Link, useLocation } from "react-router-dom";
@@ -122,20 +122,8 @@ const Header = () => {
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer">
-                  <Bike className="w-4 h-4" />
-                  {t("book.scooters")}
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer">
-                  <Car className="w-4 h-4" />
-                  {t("book.atv")}
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer">
-                  <Bike className="w-4 h-4" />
-                  {t("book.ebikes")}
+                  <Mountain className="w-4 h-4" />
+                  {t("nav.landAdventures")}
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -233,20 +221,8 @@ const Header = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Bike className="w-4 h-4" />
-                    {t("book.scooters")}
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Car className="w-4 h-4" />
-                    {t("book.atv")}
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Bike className="w-4 h-4" />
-                    {t("book.ebikes")}
+                    <Mountain className="w-4 h-4" />
+                    {t("nav.landAdventures")}
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
