@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,8 @@ import motorbikeImage from "@/assets/motorbike.jpg";
 import atvImage from "@/assets/atv.jpg";
 import ebikeMountainImage from "@/assets/ebike-mountain.jpg";
 import ebikeCityImage from "@/assets/ebike-city.jpg";
+import BookingInquiryDialog from "@/components/BookingInquiryDialog";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const vehicles = [
   {
@@ -63,9 +66,10 @@ const vehicles = [
 ];
 
 const LandAdventures = () => {
+  const { t, language } = useLanguage();
+  const [selectedVehicle, setSelectedVehicle] = useState<string | null>(null);
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 bg-gradient-hero">
@@ -158,8 +162,12 @@ const LandAdventures = () => {
                       ))}
                     </div>
 
-                    <Button variant="contact" className="w-full" asChild>
-                      <a href="/#contact">Inquire About {vehicle.name}</a>
+                    <Button 
+                      variant="contact" 
+                      className="w-full"
+                      onClick={() => setSelectedVehicle(vehicle.name)}
+                    >
+                      {t("boats.inquire")} {vehicle.name}
                     </Button>
                   </div>
                 </article>
@@ -169,6 +177,13 @@ const LandAdventures = () => {
         </section>
       </main>
       <Footer />
+      
+      <BookingInquiryDialog
+        open={!!selectedVehicle}
+        onOpenChange={(open) => !open && setSelectedVehicle(null)}
+        vehicleName={selectedVehicle || ""}
+        vehicleType="land"
+      />
     </div>
   );
 };

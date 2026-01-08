@@ -1,9 +1,11 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Ship, Users, Clock, MapPin, Gauge, FileCheck, Shield, LifeBuoy, Phone } from "lucide-react";
 import boatImage from "@/assets/boat.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 
 const boats = [
   {
@@ -85,7 +87,7 @@ const boats = [
 
 const Boats = () => {
   const { language, t } = useLanguage();
-
+  const [selectedBoat, setSelectedBoat] = useState<string | null>(null);
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -240,8 +242,12 @@ const Boats = () => {
                       ))}
                     </div>
 
-                    <Button variant="contact" className="w-full" asChild>
-                      <a href="/#contact">{t("boats.inquire")} {boat.name}</a>
+                    <Button 
+                      variant="contact" 
+                      className="w-full"
+                      onClick={() => setSelectedBoat(boat.name)}
+                    >
+                      {t("boats.inquire")} {boat.name}
                     </Button>
                   </div>
                 </article>
@@ -251,6 +257,13 @@ const Boats = () => {
         </section>
       </main>
       <Footer />
+      
+      <BookingInquiryDialog
+        open={!!selectedBoat}
+        onOpenChange={(open) => !open && setSelectedBoat(null)}
+        vehicleName={selectedBoat || ""}
+        vehicleType="boat"
+      />
     </div>
   );
 };
