@@ -25,7 +25,7 @@ import cityEbike6 from "@/assets/city-ebike-6.jpg";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import landAdventuresHero from "@/assets/land-adventures-hero.jpg";
+import landAdventuresHero from "@/assets/land-adventures-hero-new.jpg";
 
 const vehicles = [
   {
@@ -119,8 +119,8 @@ const LandAdventures = () => {
         {/* Hero Section */}
         <section className="relative pt-32 pb-20">
           <div 
-            className="absolute inset-0 bg-foreground"
-            style={{ backgroundImage: `url(${landAdventuresHero})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${landAdventuresHero})` }}
           />
           <div className="absolute inset-0 bg-foreground/60" />
           <div className="container mx-auto px-4 text-center relative z-10">
