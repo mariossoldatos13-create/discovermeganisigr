@@ -68,6 +68,9 @@ const translations: Translations = {
   "boats.upTo": { en: "Up to", el: "Έως" },
   "boats.passengers": { en: "passengers", el: "επιβάτες" },
   "boats.required": { en: "required", el: "απαιτείται" },
+  "boats.safetyTitle": { en: "Your Safety is Our Priority", el: "Η Ασφάλειά σας είναι Προτεραιότητά μας" },
+  "boats.safetyEquipment": { en: "All our boats are equipped with complete safety equipment including life jackets, flares, smoke signals, and first aid kits.", el: "Όλα τα σκάφη μας είναι εξοπλισμένα με πλήρη εξοπλισμό ασφαλείας, συμπεριλαμβανομένων σωσιβίων, φωτοβολίδων, καπνογόνων και κιτ πρώτων βοηθειών." },
+  "boats.safetyBriefing": { en: "Every morning during check-in, we provide comprehensive instructions including recommended places to visit, restaurants to stop at, and a practical lesson for inexperienced drivers on how to safely operate the boat both inside and outside the port.", el: "Κάθε πρωί κατά το check-in, παρέχουμε ολοκληρωμένες οδηγίες, συμπεριλαμβανομένων προτεινόμενων μερών για επίσκεψη, εστιατορίων για στάση, καθώς και ένα πρακτικό μάθημα για άπειρους οδηγούς σχετικά με τον ασφαλή χειρισμό του σκάφους εντός και εκτός του λιμανιού." },
   
   // RIBs Page
   "ribs.subtitle": { en: "Ribs Fleet", el: "Στόλος Φουσκωτών" },

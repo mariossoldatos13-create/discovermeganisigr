@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Ship, Users, Clock, MapPin, Gauge, FileCheck } from "lucide-react";
+import { Ship, Users, Clock, MapPin, Gauge, FileCheck, Shield, LifeBuoy } from "lucide-react";
 import boatImage from "@/assets/boat.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -121,6 +121,34 @@ const Boats = () => {
               <p className="text-muted-foreground font-sans leading-relaxed">
                 <span className="text-foreground font-medium">{t("boats.skipperNote")}</span>
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Safety Section */}
+        <section className="py-12 bg-card border-y border-border">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
+                <Shield className="w-8 h-8 text-accent" />
+              </div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                {t("boats.safetyTitle")}
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <LifeBuoy className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    {t("boats.safetyEquipment")}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <FileCheck className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    {t("boats.safetyBriefing")}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
