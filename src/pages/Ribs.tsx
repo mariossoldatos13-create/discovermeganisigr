@@ -7,6 +7,11 @@ import ribBoatImage from "@/assets/rib-boat.jpg";
 import gene6701 from "@/assets/gene-670-1.jpg";
 import gene6702 from "@/assets/gene-670-2.jpg";
 import gene6703 from "@/assets/gene-670-3.jpg";
+import tempest7701 from "@/assets/tempest-770-1.jpg";
+import tempest7702 from "@/assets/tempest-770-2.jpg";
+import tempest7703 from "@/assets/tempest-770-3.jpg";
+import tempest7704 from "@/assets/tempest-770-4.jpg";
+import tempest7705 from "@/assets/tempest-770-5.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -35,7 +40,7 @@ const ribs = [
     id: "tempest-770",
     name: "Victor Tempest 7.7m",
     power: "250 HP",
-    image: ribBoatImage,
+    images: [tempest7701, tempest7702, tempest7703, tempest7704, tempest7705],
     capacity: 9,
     license: true,
     licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
@@ -140,50 +145,40 @@ const Ribs = () => {
                 >
                   {/* Image */}
                   <div className="relative h-64 overflow-hidden">
-                    {rib.images ? (
-                      <>
-                        <div 
-                          className="w-full h-full cursor-pointer"
-                          onClick={() => openLightbox(rib)}
-                        >
-                          <img
-                            src={rib.images[getImageIndex(rib.id)]}
-                            alt={`${rib.name} - ${getImageIndex(rib.id) + 1}`}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                        </div>
-                        {rib.images.length > 1 && (
-                          <>
-                            <button
-                              onClick={(e) => prevImage(rib.id, rib.images!.length, e)}
-                              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
-                            >
-                              <ChevronLeft className="w-5 h-5" />
-                            </button>
-                            <button
-                              onClick={(e) => nextImage(rib.id, rib.images!.length, e)}
-                              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
-                            >
-                              <ChevronRight className="w-5 h-5" />
-                            </button>
-                            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-                              {rib.images.map((_, idx) => (
-                                <button
-                                  key={idx}
-                                  onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [rib.id]: idx })); }}
-                                  className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(rib.id) ? 'bg-card' : 'bg-card/50'}`}
-                                />
-                              ))}
-                            </div>
-                          </>
-                        )}
-                      </>
-                    ) : (
+                    <div 
+                      className="w-full h-full cursor-pointer"
+                      onClick={() => openLightbox(rib)}
+                    >
                       <img
-                        src={rib.image}
-                        alt={rib.name}
+                        src={rib.images[getImageIndex(rib.id)]}
+                        alt={`${rib.name} - ${getImageIndex(rib.id) + 1}`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
+                    </div>
+                    {rib.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={(e) => prevImage(rib.id, rib.images.length, e)}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={(e) => nextImage(rib.id, rib.images.length, e)}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                          {rib.images.map((_, idx) => (
+                            <button
+                              key={idx}
+                              onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [rib.id]: idx })); }}
+                              className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(rib.id) ? 'bg-card' : 'bg-card/50'}`}
+                            />
+                          ))}
+                        </div>
+                      </>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent" />
                     <div className="absolute top-4 right-4 flex gap-2">
