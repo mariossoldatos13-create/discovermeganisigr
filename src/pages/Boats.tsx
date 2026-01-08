@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Ship, Users, Clock, MapPin, Gauge, FileCheck } from "lucide-react";
 import boatImage from "@/assets/boat.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const boats = [
   {
@@ -14,8 +15,14 @@ const boats = [
     license: false,
     destinations: ["Around Meganisi"],
     hours: "9:00 - 18:00",
-    description: "Perfect for first-time boaters! This easy-to-handle boat requires no license and is ideal for exploring the beautiful coastline of Meganisi.",
-    features: ["No license required", "Fuel efficient", "Easy handling", "Shaded canopy"],
+    description: {
+      en: "Perfect for first-time boaters! This easy-to-handle boat requires no license and is ideal for exploring the beautiful coastline of Meganisi.",
+      el: "Ιδανικό για αρχάριους! Αυτό το εύχρηστο σκάφος δεν απαιτεί δίπλωμα και είναι ιδανικό για την εξερεύνηση της όμορφης ακτογραμμής του Μεγανησίου."
+    },
+    features: {
+      en: ["No license required", "Fuel efficient", "Easy handling", "Shaded canopy"],
+      el: ["Χωρίς δίπλωμα", "Οικονομικό", "Εύκολος χειρισμός", "Σκίαστρο"]
+    },
   },
   {
     id: "nikita-500",
@@ -24,11 +31,17 @@ const boats = [
     image: boatImage,
     capacity: 8,
     license: true,
-    licenseType: "Speed boat license",
+    licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
     destinations: ["Around Meganisi"],
     hours: "9:00 - 18:00",
-    description: "A versatile and comfortable boat that offers more power while remaining easy to handle. Great for families wanting to explore every corner of Meganisi.",
-    features: ["Easy to handle", "Comfortable seating", "Powerful engine", "Great stability"],
+    description: {
+      en: "A versatile and comfortable boat that offers more power while remaining easy to handle. Great for families wanting to explore every corner of Meganisi.",
+      el: "Ένα ευέλικτο και άνετο σκάφος που προσφέρει περισσότερη ισχύ ενώ παραμένει εύκολο στον χειρισμό. Ιδανικό για οικογένειες που θέλουν να εξερευνήσουν κάθε γωνιά του Μεγανησίου."
+    },
+    features: {
+      en: ["Easy to handle", "Comfortable seating", "Powerful engine", "Great stability"],
+      el: ["Εύκολος χειρισμός", "Άνετα καθίσματα", "Ισχυρός κινητήρας", "Μεγάλη σταθερότητα"]
+    },
   },
   {
     id: "nikita-550",
@@ -37,11 +50,17 @@ const boats = [
     image: boatImage,
     capacity: 9,
     license: true,
-    licenseType: "Speed boat license",
+    licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
     destinations: ["Meganisi", "Kalamos", "Kastos"],
     hours: "9:00 - 18:00",
-    description: "With 115HP of power, this boat opens up the neighboring islands of Kalamos and Kastos for your exploration. Discover hidden beaches and authentic Greek island life.",
-    features: ["Island hopping capable", "Spacious deck", "Powerful 115HP engine", "Premium comfort"],
+    description: {
+      en: "With 115HP of power, this boat opens up the neighboring islands of Kalamos and Kastos for your exploration. Discover hidden beaches and authentic Greek island life.",
+      el: "Με 115HP ισχύ, αυτό το σκάφος ανοίγει τα γειτονικά νησιά Κάλαμο και Καστό για εξερεύνηση. Ανακαλύψτε κρυφές παραλίες και αυθεντική ελληνική νησιωτική ζωή."
+    },
+    features: {
+      en: ["Island hopping capable", "Spacious deck", "Powerful 115HP engine", "Premium comfort"],
+      el: ["Ικανό για νησιοπήδημα", "Ευρύχωρο κατάστρωμα", "Ισχυρός κινητήρας 115HP", "Premium άνεση"]
+    },
   },
   {
     id: "poseidon-550",
@@ -50,41 +69,23 @@ const boats = [
     image: boatImage,
     capacity: 8,
     license: true,
-    licenseType: "Speed boat license",
+    licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
     destinations: ["Meganisi", "Kalamos", "Kastos"],
     hours: "9:00 - 18:00",
-    description: "The Poseidon 5.5m combines reliability with performance. Perfect for adventurous families looking to explore the nearby islands in comfort and style.",
-    features: ["Reliable performance", "Island hopping capable", "Comfortable layout", "Sun protection"],
-  },
-  {
-    id: "gene-670-rib",
-    name: "Gene 670 RIB",
-    power: "250 HP",
-    image: boatImage,
-    capacity: 9,
-    license: true,
-    licenseType: "Speed boat license",
-    destinations: ["Meganisi", "Kalamos", "Kastos", "Atokos", "Ithaca"],
-    hours: "9:00 - 18:00",
-    description: "Our powerful RIB opens up the entire Ionian Sea for your adventure. Visit the legendary Ithaca, the pristine Atokos, and more with speed and comfort.",
-    features: ["RIB stability", "250HP power", "Long-range capability", "Premium experience"],
-  },
-  {
-    id: "tempest-770",
-    name: "Victor Tempest 7.7m",
-    power: "250 HP",
-    image: boatImage,
-    capacity: 9,
-    license: true,
-    licenseType: "Speed boat license",
-    destinations: ["Meganisi", "Kalamos", "Kastos", "Atokos", "Ithaca"],
-    hours: "9:00 - 18:00",
-    description: "The flagship of our fleet. The Victor Tempest 7.7m offers the ultimate boating experience with exceptional space, power, and range for the most adventurous explorers.",
-    features: ["Flagship vessel", "Maximum comfort", "Extended range", "Premium amenities"],
+    description: {
+      en: "The Poseidon 5.5m combines reliability with performance. Perfect for adventurous families looking to explore the nearby islands in comfort and style.",
+      el: "Το Poseidon 5.5m συνδυάζει αξιοπιστία με επιδόσεις. Ιδανικό για τολμηρές οικογένειες που θέλουν να εξερευνήσουν τα κοντινά νησιά με άνεση και στυλ."
+    },
+    features: {
+      en: ["Reliable performance", "Island hopping capable", "Comfortable layout", "Sun protection"],
+      el: ["Αξιόπιστες επιδόσεις", "Ικανό για νησιοπήδημα", "Άνετη διάταξη", "Προστασία από ήλιο"]
+    },
   },
 ];
 
 const Boats = () => {
+  const { language, t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -93,14 +94,13 @@ const Boats = () => {
         <section className="relative pt-32 pb-20 bg-gradient-hero">
           <div className="container mx-auto px-4 text-center">
             <p className="text-accent font-sans font-semibold tracking-widest uppercase mb-3 animate-fade-in">
-              Our Boat Fleet
+              {t("boats.subtitle")}
             </p>
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-card mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              Explore by Sea
+              {t("boats.title")}
             </h1>
             <p className="text-card/80 text-lg max-w-2xl mx-auto font-sans animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              From easy-to-handle boats for beginners to powerful vessels for island hopping adventures. 
-              All boats available from 9:00 AM to 6:00 PM.
+              {t("boats.description")}
             </p>
           </div>
         </section>
@@ -113,16 +113,13 @@ const Boats = () => {
                 <Ship className="w-8 h-8 text-primary" />
               </div>
               <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Professional Skipper Service
+                {t("boats.skipperTitle")}
               </h2>
               <p className="text-muted-foreground text-lg font-sans leading-relaxed mb-4">
-                Don't have a boating license? No problem! We offer experienced local skippers who know 
-                every hidden cove, the best swimming spots, and the perfect places for lunch. Our skippers 
-                are professional sailors with years of experience navigating the Ionian waters.
+                {t("boats.skipperDesc")}
               </p>
               <p className="text-muted-foreground font-sans leading-relaxed">
-                Sit back, relax, and let our captain take you on an unforgettable journey while sharing 
-                stories and local knowledge about the islands. <span className="text-foreground font-medium">Skipper service available for an additional fee.</span>
+                <span className="text-foreground font-medium">{t("boats.skipperNote")}</span>
               </p>
             </div>
           </div>
@@ -153,7 +150,7 @@ const Boats = () => {
                       {!boat.license && (
                         <span className="px-3 py-1 bg-accent text-card text-sm font-sans font-semibold rounded-full flex items-center gap-1">
                           <FileCheck className="w-3 h-3" />
-                          No License
+                          {t("boats.noLicense")}
                         </span>
                       )}
                     </div>
@@ -172,14 +169,14 @@ const Boats = () => {
                   {/* Content */}
                   <div className="p-6 md:p-8">
                     <p className="text-muted-foreground font-sans mb-6 leading-relaxed">
-                      {boat.description}
+                      {boat.description[language]}
                     </p>
 
                     {/* Specs */}
                     <div className="grid grid-cols-2 gap-4 mb-6">
                       <div className="flex items-center gap-2 text-foreground">
                         <Users className="w-5 h-5 text-primary" />
-                        <span className="font-sans text-sm">Up to {boat.capacity} passengers</span>
+                        <span className="font-sans text-sm">{t("boats.upTo")} {boat.capacity} {t("boats.passengers")}</span>
                       </div>
                       <div className="flex items-center gap-2 text-foreground">
                         <Clock className="w-5 h-5 text-primary" />
@@ -189,17 +186,17 @@ const Boats = () => {
                         <MapPin className="w-5 h-5 text-primary" />
                         <span className="font-sans text-sm">{boat.destinations.join(", ")}</span>
                       </div>
-                      {boat.license && (
+                      {boat.license && boat.licenseType && (
                         <div className="flex items-center gap-2 text-foreground col-span-2">
                           <Gauge className="w-5 h-5 text-accent" />
-                          <span className="font-sans text-sm text-accent">{boat.licenseType} required</span>
+                          <span className="font-sans text-sm text-accent">{boat.licenseType[language]} {t("boats.required")}</span>
                         </div>
                       )}
                     </div>
 
                     {/* Features */}
                     <div className="flex flex-wrap gap-2 mb-6">
-                      {boat.features.map((feature) => (
+                      {boat.features[language].map((feature) => (
                         <span
                           key={feature}
                           className="px-3 py-1 bg-sea-light text-primary text-sm font-sans rounded-full"
@@ -210,7 +207,7 @@ const Boats = () => {
                     </div>
 
                     <Button variant="contact" className="w-full" asChild>
-                      <a href="/#contact">Inquire About {boat.name}</a>
+                      <a href="/#contact">{t("boats.inquire")} {boat.name}</a>
                     </Button>
                   </div>
                 </article>

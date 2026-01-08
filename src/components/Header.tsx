@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
 import { Link, useLocation } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,12 +27,13 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { href: isHomePage ? "#home" : "/", label: "Home", isAnchor: isHomePage },
-    { href: isHomePage ? "#about" : "/#about", label: "About", isAnchor: isHomePage },
-    { href: "/boats", label: "Boats", isAnchor: false },
-    { href: "/cruises", label: "Cruises", isAnchor: false },
-    { href: "/land-adventures", label: "Land Adventures", isAnchor: false },
-    { href: isHomePage ? "#contact" : "/#contact", label: "Contact", isAnchor: isHomePage },
+    { href: isHomePage ? "#home" : "/", label: t("nav.home"), isAnchor: isHomePage },
+    { href: isHomePage ? "#about" : "/#about", label: t("nav.about"), isAnchor: isHomePage },
+    { href: "/boats", label: t("nav.boats"), isAnchor: false },
+    { href: "/ribs", label: t("nav.ribs"), isAnchor: false },
+    { href: "/cruises", label: t("nav.cruises"), isAnchor: false },
+    { href: "/land-adventures", label: t("nav.landAdventures"), isAnchor: false },
+    { href: isHomePage ? "#contact" : "/#contact", label: t("nav.contact"), isAnchor: isHomePage },
   ];
 
   return (
@@ -40,13 +49,13 @@ const Header = () => {
         <Logo isScrolled={isScrolled} />
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             link.isAnchor ? (
               <a
                 key={link.href}
                 href={link.href}
-                className={`font-sans font-medium transition-colors duration-300 hover:text-accent ${
+                className={`font-sans font-medium transition-colors duration-300 hover:text-accent text-sm ${
                   isScrolled ? "text-foreground" : "text-card"
                 }`}
               >
@@ -56,7 +65,7 @@ const Header = () => {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`font-sans font-medium transition-colors duration-300 hover:text-accent ${
+                className={`font-sans font-medium transition-colors duration-300 hover:text-accent text-sm ${
                   isScrolled ? "text-foreground" : "text-card"
                 }`}
               >
@@ -64,27 +73,87 @@ const Header = () => {
               </Link>
             )
           ))}
+          
+          {/* Language Switcher */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button 
+                className={`font-sans font-medium transition-colors duration-300 hover:text-accent text-sm flex items-center gap-1 ${
+                  isScrolled ? "text-foreground" : "text-card"
+                }`}
+              >
+                {language === "en" ? "EN" : "ΕΛ"}
+                <ChevronDown className="w-4 h-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-card border-border">
+              <DropdownMenuItem 
+                onClick={() => setLanguage("en")}
+                className={language === "en" ? "bg-primary/10" : ""}
+              >
+                🇬🇧 English
+              </DropdownMenuItem>
+              <DropdownMenuItem 
+                onClick={() => setLanguage("el")}
+                className={language === "el" ? "bg-primary/10" : ""}
+              >
+                🇬🇷 Ελληνικά
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Button variant={isScrolled ? "hero" : "hero-outline"} size="lg" asChild>
-            <a href={isHomePage ? "#contact" : "/#contact"}>Book Now</a>
+            <a href={isHomePage ? "#contact" : "/#contact"}>{t("nav.bookNow")}</a>
           </Button>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? (
-            <X className={isScrolled ? "text-foreground" : "text-card"} />
-          ) : (
-            <Menu className={isScrolled ? "text-foreground" : "text-card"} />
-          )}
-        </button>
+        {/* Mobile Controls */}
+        <div className="lg:hidden flex items-center gap-3">
+          {/* Mobile Language Switcher */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button 
+                className={`font-sans font-medium text-sm flex items-center gap-1 ${
+                  isScrolled ? "text-foreground" : "text-card"
+                }`}
+              >
+                {language === "en" ? "EN" : "ΕΛ"}
+                <ChevronDown className="w-4 h-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-card border-border">
+              <DropdownMenuItem 
+                onClick={() => setLanguage("en")}
+                className={language === "en" ? "bg-primary/10" : ""}
+              >
+                🇬🇧 English
+              </DropdownMenuItem>
+              <DropdownMenuItem 
+                onClick={() => setLanguage("el")}
+                className={language === "el" ? "bg-primary/10" : ""}
+              >
+                🇬🇷 Ελληνικά
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <X className={isScrolled ? "text-foreground" : "text-card"} />
+            ) : (
+              <Menu className={isScrolled ? "text-foreground" : "text-card"} />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-card shadow-elevated animate-fade-in">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-card shadow-elevated animate-fade-in">
           <nav className="flex flex-col p-4 gap-4">
             {navLinks.map((link) => (
               link.isAnchor ? (
@@ -108,7 +177,7 @@ const Header = () => {
               )
             ))}
             <Button variant="hero" size="lg" asChild>
-              <a href={isHomePage ? "#contact" : "/#contact"}>Book Now</a>
+              <a href={isHomePage ? "#contact" : "/#contact"}>{t("nav.bookNow")}</a>
             </Button>
           </nav>
         </div>
