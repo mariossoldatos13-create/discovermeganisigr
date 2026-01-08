@@ -19,7 +19,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 const ribs = [
   {
     id: "gene-670-rib",
-    name: "Gene 670 RIB",
+    name: "Gene 6.70m",
     power: "250 HP",
     images: [gene6701, gene6702, gene6703],
     capacity: 9,
@@ -38,7 +38,7 @@ const ribs = [
   },
   {
     id: "tempest-770",
-    name: "Victor Tempest 7.7m",
+    name: "Capelli Tempest 7.70m",
     power: "250 HP",
     images: [tempest7701, tempest7702, tempest7703, tempest7704, tempest7705],
     capacity: 9,
@@ -47,8 +47,8 @@ const ribs = [
     destinations: ["Meganisi", "Kalamos", "Kastos", "Atokos", "Ithaca"],
     hours: "9:00 - 18:00",
     description: {
-      en: "The flagship of our fleet. The Victor Tempest 7.7m offers the ultimate boating experience with exceptional space, power, and range for the most adventurous explorers.",
-      el: "Η ναυαρχίδα του στόλου μας. Το Victor Tempest 7.7m προσφέρει την απόλυτη εμπειρία θαλάσσης με εξαιρετικό χώρο, ισχύ και εμβέλεια για τους πιο τολμηρούς εξερευνητές."
+      en: "The flagship of our fleet. The Capelli Tempest 7.70m offers the ultimate boating experience with exceptional space, power, and range for the most adventurous explorers.",
+      el: "Η ναυαρχίδα του στόλου μας. Το Capelli Tempest 7.70m προσφέρει την απόλυτη εμπειρία θαλάσσης με εξαιρετικό χώρο, ισχύ και εμβέλεια για τους πιο τολμηρούς εξερευνητές."
     },
     features: {
       en: ["Flagship vessel", "Maximum comfort", "Extended range", "Premium amenities"],
@@ -143,6 +143,19 @@ const Ribs = () => {
                   className="group bg-card rounded-3xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500 animate-fade-in opacity-0"
                   style={{ animationDelay: `${0.1 * (index + 1)}s` }}
                 >
+                  {/* Header above image */}
+                  <div className="p-6 pb-4 border-b border-border">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Ship className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h2 className="text-foreground font-display text-2xl font-bold">{rib.name}</h2>
+                        <span className="text-primary font-sans font-semibold text-sm">{rib.power}</span>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Image */}
                   <div className="relative h-64 overflow-hidden">
                     <div 
@@ -169,7 +182,7 @@ const Ribs = () => {
                         >
                           <ChevronRight className="w-5 h-5" />
                         </button>
-                        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
                           {rib.images.map((_, idx) => (
                             <button
                               key={idx}
@@ -180,22 +193,6 @@ const Ribs = () => {
                         </div>
                       </>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent pointer-events-none" />
-                    <div className="absolute top-4 right-4 flex gap-2">
-                      <span className="px-3 py-1 bg-primary text-card text-sm font-sans font-semibold rounded-full">
-                        {rib.power}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-4 left-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-card/90 backdrop-blur-sm flex items-center justify-center">
-                          <Ship className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                          <h2 className="text-card font-display text-2xl font-bold">{rib.name}</h2>
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Content */}

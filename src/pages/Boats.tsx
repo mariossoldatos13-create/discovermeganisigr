@@ -41,7 +41,7 @@ const boats = [
   },
   {
     id: "nikita-sv499",
-    name: "Nikita SV4.99",
+    name: "Nikita SV 4.99m",
     power: "115 HP",
     image: boatImage,
     capacity: 8,
@@ -60,7 +60,7 @@ const boats = [
   },
   {
     id: "nikita-500",
-    name: "Nikita 5.00",
+    name: "Nikita 5.00m",
     power: "60 HP",
     images: [nikita5001],
     capacity: 8,
