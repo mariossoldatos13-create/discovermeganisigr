@@ -146,7 +146,7 @@ const Ribs = () => {
                   {/* Image */}
                   <div className="relative h-64 overflow-hidden">
                     <div 
-                      className="w-full h-full cursor-pointer"
+                      className="w-full h-full cursor-pointer relative z-10"
                       onClick={() => openLightbox(rib)}
                     >
                       <img
@@ -158,18 +158,18 @@ const Ribs = () => {
                     {rib.images.length > 1 && (
                       <>
                         <button
-                          onClick={(e) => prevImage(rib.id, rib.images.length, e)}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                          onClick={(e) => { e.stopPropagation(); prevImage(rib.id, rib.images.length, e); }}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-20"
                         >
                           <ChevronLeft className="w-5 h-5" />
                         </button>
                         <button
-                          onClick={(e) => nextImage(rib.id, rib.images.length, e)}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                          onClick={(e) => { e.stopPropagation(); nextImage(rib.id, rib.images.length, e); }}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-20"
                         >
                           <ChevronRight className="w-5 h-5" />
                         </button>
-                        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
                           {rib.images.map((_, idx) => (
                             <button
                               key={idx}
@@ -180,7 +180,7 @@ const Ribs = () => {
                         </div>
                       </>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent pointer-events-none" />
                     <div className="absolute top-4 right-4 flex gap-2">
                       <span className="px-3 py-1 bg-primary text-card text-sm font-sans font-semibold rounded-full">
                         {rib.power}
