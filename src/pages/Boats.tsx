@@ -13,6 +13,9 @@ import nikita4702 from "@/assets/nikita-470-2.jpg";
 import nikita4703 from "@/assets/nikita-470-3.jpg";
 import nikita4704 from "@/assets/nikita-470-4.jpg";
 import nikita5001 from "@/assets/nikita-500-1.jpg";
+import nikitasv4991 from "@/assets/nikita-sv499-1.jpg";
+import nikitasv4992 from "@/assets/nikita-sv499-2.jpg";
+import nikitasv4993 from "@/assets/nikita-sv499-3.jpg";
 import poseidon55m1 from "@/assets/poseidon-55m-1.jpg";
 import poseidon55m2 from "@/assets/poseidon-55m-2.jpg";
 import poseidon55m3 from "@/assets/poseidon-55m-3.jpg";
@@ -43,7 +46,7 @@ const boats = [
     id: "nikita-sv499",
     name: "Nikita SV 4.99m",
     power: "115 HP",
-    image: boatImage,
+    images: [nikitasv4991, nikitasv4992, nikitasv4993],
     capacity: 8,
     license: true,
     licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
@@ -230,52 +233,41 @@ const Boats = () => {
                   className="group bg-card rounded-3xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500 animate-fade-in opacity-0"
                   style={{ animationDelay: `${0.1 * (index + 1)}s` }}
                 >
-                  {/* Image */}
                   <div className="relative h-64 overflow-hidden">
-                    {boat.images ? (
-                      <>
-                        <div 
-                          className="w-full h-full cursor-pointer"
-                          onClick={() => openLightbox(boat)}
-                        >
-                          <img
-                            src={boat.images[getImageIndex(boat.id)]}
-                            alt={`${boat.name} - ${getImageIndex(boat.id) + 1}`}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                        </div>
-                        {boat.images.length > 1 && (
-                          <>
-                            <button
-                              onClick={(e) => prevImage(boat.id, boat.images!.length, e)}
-                              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
-                            >
-                              <ChevronLeft className="w-5 h-5" />
-                            </button>
-                            <button
-                              onClick={(e) => nextImage(boat.id, boat.images!.length, e)}
-                              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
-                            >
-                              <ChevronRight className="w-5 h-5" />
-                            </button>
-                            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-                              {boat.images.map((_, idx) => (
-                                <button
-                                  key={idx}
-                                  onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [boat.id]: idx })); }}
-                                  className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(boat.id) ? 'bg-card' : 'bg-card/50'}`}
-                                />
-                              ))}
-                            </div>
-                          </>
-                        )}
-                      </>
-                    ) : (
+                    <div 
+                      className="w-full h-full cursor-pointer"
+                      onClick={() => openLightbox(boat)}
+                    >
                       <img
-                        src={boat.image}
-                        alt={boat.name}
+                        src={boat.images[getImageIndex(boat.id)]}
+                        alt={`${boat.name} - ${getImageIndex(boat.id) + 1}`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
+                    </div>
+                    {boat.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={(e) => prevImage(boat.id, boat.images.length, e)}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={(e) => nextImage(boat.id, boat.images.length, e)}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                          {boat.images.map((_, idx) => (
+                            <button
+                              key={idx}
+                              onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [boat.id]: idx })); }}
+                              className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(boat.id) ? 'bg-card' : 'bg-card/50'}`}
+                            />
+                          ))}
+                        </div>
+                      </>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent pointer-events-none" />
                     <div className="absolute top-4 right-4 flex gap-2 pointer-events-none">
