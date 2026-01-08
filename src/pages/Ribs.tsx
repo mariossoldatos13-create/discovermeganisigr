@@ -1,9 +1,11 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Ship, Users, Clock, MapPin, Gauge, Anchor } from "lucide-react";
 import ribBoatImage from "@/assets/rib-boat.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 
 const ribs = [
   {
@@ -48,7 +50,7 @@ const ribs = [
 
 const Ribs = () => {
   const { language, t } = useLanguage();
-
+  const [selectedRib, setSelectedRib] = useState<string | null>(null);
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -168,8 +170,12 @@ const Ribs = () => {
                       ))}
                     </div>
 
-                    <Button variant="contact" className="w-full" asChild>
-                      <a href="/#contact">{t("boats.inquire")} {rib.name}</a>
+                    <Button 
+                      variant="contact" 
+                      className="w-full"
+                      onClick={() => setSelectedRib(rib.name)}
+                    >
+                      {t("boats.inquire")} {rib.name}
                     </Button>
                   </div>
                 </article>
@@ -179,6 +185,13 @@ const Ribs = () => {
         </section>
       </main>
       <Footer />
+      
+      <BookingInquiryDialog
+        open={!!selectedRib}
+        onOpenChange={(open) => !open && setSelectedRib(null)}
+        vehicleName={selectedRib || ""}
+        vehicleType="rib"
+      />
     </div>
   );
 };
