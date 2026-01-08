@@ -70,6 +70,7 @@ const LandAdventures = () => {
   const [selectedVehicle, setSelectedVehicle] = useState<string | null>(null);
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 bg-gradient-hero">
