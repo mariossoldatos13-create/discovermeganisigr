@@ -8,6 +8,10 @@ import nikita55m1 from "@/assets/nikita-55m-1.jpg";
 import nikita55m2 from "@/assets/nikita-55m-2.jpg";
 import nikita55m3 from "@/assets/nikita-55m-3.jpg";
 import nikita55m4 from "@/assets/nikita-55m-4.jpg";
+import nikita4701 from "@/assets/nikita-470-1.jpg";
+import nikita4702 from "@/assets/nikita-470-2.jpg";
+import nikita4703 from "@/assets/nikita-470-3.jpg";
+import nikita4704 from "@/assets/nikita-470-4.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -17,7 +21,7 @@ const boats = [
     id: "nikita-470",
     name: "Nikita 4.70m",
     power: "30 HP",
-    image: boatImage,
+    images: [nikita4701, nikita4702, nikita4703, nikita4704],
     capacity: 6,
     license: false,
     destinations: ["Around Meganisi"],
