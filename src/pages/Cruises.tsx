@@ -1,8 +1,13 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Anchor, Clock, Camera, MapPin, Play, Image } from "lucide-react";
+import { Anchor, Clock, Camera, MapPin, Play, Image, X, ChevronLeft, ChevronRight } from "lucide-react";
 import cruiseMeganisi from "@/assets/cruise-meganisi.jpg";
+import cruiseMeganisi2 from "@/assets/cruise-meganisi-2.jpg";
+import cruiseMeganisi3 from "@/assets/cruise-meganisi-3.jpg";
+import cruiseMeganisi4 from "@/assets/cruise-meganisi-4.jpg";
+import cruiseMeganisi5 from "@/assets/cruise-meganisi-5.jpg";
 import cruiseKalamosKastos from "@/assets/cruise-kalamos-kastos.jpg";
 import cruiseWestLefkas from "@/assets/cruise-west-lefkas.jpg";
 import cruiseIthaca from "@/assets/cruise-ithaca.jpg";
@@ -12,7 +17,7 @@ const cruises = [
   {
     id: "meganisi",
     name: "Meganisi Island",
-    image: cruiseMeganisi,
+    images: [cruiseMeganisi, cruiseMeganisi2, cruiseMeganisi3, cruiseMeganisi4, cruiseMeganisi5],
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Hidden beaches", "Sea caves", "Traditional villages", "Crystal waters"],
     description: "Discover the hidden gem of the Ionian Sea. Meganisi, with its three charming villages of Vathi, Spartochori, and Katomeri, offers an authentic Greek island experience. Explore secluded beaches accessible only by boat, swim in crystal-clear turquoise waters, and discover mysterious sea caves carved by centuries of waves. Stop at local tavernas for fresh seafood and experience the warm hospitality of the islanders.",
@@ -21,7 +26,7 @@ const cruises = [
   {
     id: "kalamos-kastos",
     name: "Kalamos & Kastos",
-    image: cruiseKalamosKastos,
+    images: [cruiseKalamosKastos],
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Unspoiled nature", "Pine forests", "Quiet harbors", "Swimming spots"],
     description: "Venture to the untouched paradise of Kalamos and Kastos, two of the most pristine islands in the Ionian. Kalamos is covered in dense pine forests that meet crystal-clear waters, while tiny Kastos offers a peaceful escape with its charming harbor and welcoming tavernas. These islands remain largely undiscovered by mass tourism, making them perfect for those seeking tranquility and natural beauty.",
@@ -30,7 +35,7 @@ const cruises = [
   {
     id: "west-lefkas",
     name: "West Lefkada Coast",
-    image: cruiseWestLefkas,
+    images: [cruiseWestLefkas],
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Porto Katsiki", "Egremni Beach", "Dramatic cliffs", "Sunset views"],
     description: "Experience the dramatic western coast of Lefkada, home to some of Greece's most famous beaches. Marvel at the towering white cliffs of Porto Katsiki, consistently ranked among the best beaches in Europe. Visit the stunning Egremni beach and discover hidden coves only accessible by sea. The turquoise waters against the white limestone cliffs create a landscape that seems almost unreal.",
@@ -39,7 +44,7 @@ const cruises = [
   {
     id: "ithaca",
     name: "Ithaca - Home of Odysseus",
-    image: cruiseIthaca,
+    images: [cruiseIthaca],
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Mythical history", "Vathy harbor", "Traditional culture", "Scenic bays"],
     description: "Follow in the footsteps of Odysseus to the legendary island of Ithaca. This mythical destination captivates visitors with its natural beauty and rich history. Explore the picturesque capital of Vathy, nestled in one of the world's largest natural harbors. Visit traditional villages, swim in secluded bays, and feel the magic of the island that inspired Homer's epic tale. A journey to Ithaca is truly a journey through time.",
@@ -48,6 +53,30 @@ const cruises = [
 ];
 
 const Cruises = () => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImages, setLightboxImages] = useState<string[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const openLightbox = (images: string[], startIndex: number = 0) => {
+    setLightboxImages(images);
+    setCurrentImageIndex(startIndex);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setLightboxImages([]);
+    setCurrentImageIndex(0);
+  };
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % lightboxImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + lightboxImages.length) % lightboxImages.length);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -90,25 +119,28 @@ const Cruises = () => {
                     index % 2 === 1 ? "lg:col-start-2" : ""
                   }`}>
                     <img
-                      src={cruise.image}
+                      src={cruise.images[0]}
                       alt={cruise.name}
-                      className="w-full h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105 cursor-pointer"
+                      onClick={() => openLightbox(cruise.images, 0)}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent pointer-events-none" />
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                       <div className="flex items-center gap-2 text-card">
                         <Clock className="w-5 h-5" />
                         <span className="font-sans text-sm">{cruise.duration}</span>
                       </div>
-                      {/* Placeholder for future media gallery */}
-                      <div className="flex gap-2">
-                        <button className="w-10 h-10 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center hover:bg-card/40 transition-colors" title="Photos coming soon">
+                      {cruise.images.length > 1 && (
+                        <button 
+                          onClick={() => openLightbox(cruise.images, 0)}
+                          className="w-10 h-10 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center hover:bg-card/40 transition-colors"
+                        >
                           <Image className="w-5 h-5 text-card" />
+                          <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-card text-xs rounded-full flex items-center justify-center">
+                            {cruise.images.length}
+                          </span>
                         </button>
-                        <button className="w-10 h-10 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center hover:bg-card/40 transition-colors" title="Videos coming soon">
-                          <Play className="w-5 h-5 text-card" />
-                        </button>
-                      </div>
+                      )}
                     </div>
                   </div>
 
@@ -186,6 +218,59 @@ const Cruises = () => {
         </section>
       </main>
       <Footer />
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-foreground/95 flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center hover:bg-card/40 transition-colors z-10"
+          >
+            <X className="w-6 h-6 text-card" />
+          </button>
+          
+          {lightboxImages.length > 1 && (
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center hover:bg-card/40 transition-colors z-10"
+              >
+                <ChevronLeft className="w-6 h-6 text-card" />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center hover:bg-card/40 transition-colors z-10"
+              >
+                <ChevronRight className="w-6 h-6 text-card" />
+              </button>
+            </>
+          )}
+          
+          <img
+            src={lightboxImages[currentImageIndex]}
+            alt={`Image ${currentImageIndex + 1}`}
+            className="max-h-[90vh] max-w-[90vw] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          
+          {lightboxImages.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {lightboxImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    idx === currentImageIndex ? "bg-card" : "bg-card/40"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
