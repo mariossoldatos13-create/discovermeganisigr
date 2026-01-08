@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Bike, Users, MapPin, Zap, Battery, ChevronLeft, ChevronRight, X } from "lucide-react";
 import motorbikeImage from "@/assets/motorbike.jpg";
 import scooter50cc from "@/assets/scooter-50cc.jpg";
+import scooter125cc from "@/assets/scooter-125cc.jpg";
 import atvImage from "@/assets/atv.jpg";
 import ebikeMountainImage from "@/assets/ebike-mountain.jpg";
 import ebikeCityImage from "@/assets/ebike-city.jpg";
@@ -37,7 +38,7 @@ const vehicles = [
     id: "symphony-sr-125",
     name: "Symphony SR 125cc",
     type: "Scooter",
-    image: motorbikeImage,
+    image: scooter125cc,
     capacity: 2,
     terrain: "Paved roads only",
     description: "More power for two! The 125cc Symphony offers comfortable riding for couples wanting to explore the entire island together.",
