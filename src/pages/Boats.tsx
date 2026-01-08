@@ -12,6 +12,7 @@ import nikita4701 from "@/assets/nikita-470-1.jpg";
 import nikita4702 from "@/assets/nikita-470-2.jpg";
 import nikita4703 from "@/assets/nikita-470-3.jpg";
 import nikita4704 from "@/assets/nikita-470-4.jpg";
+import nikita5001 from "@/assets/nikita-500-1.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -58,7 +59,7 @@ const boats = [
     id: "nikita-500",
     name: "Nikita 5.00",
     power: "60 HP",
-    image: boatImage,
+    images: [nikita5001],
     capacity: 8,
     license: true,
     licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
