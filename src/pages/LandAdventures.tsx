@@ -31,7 +31,7 @@ const vehicles = [
     id: "symphony-sr-50",
     name: "Symphony SR 50cc",
     type: "Scooter",
-    image: scooter50cc,
+    images: [scooter50cc],
     capacity: 1,
     terrain: "Paved roads only",
     description: "The perfect scooter for zipping around the charming villages of Meganisi. Fuel-efficient and easy to handle, ideal for solo explorers.",
@@ -41,7 +41,7 @@ const vehicles = [
     id: "symphony-sr-125",
     name: "Symphony SR 125cc",
     type: "Scooter",
-    image: scooter125cc,
+    images: [scooter125cc],
     capacity: 2,
     terrain: "Paved roads only",
     description: "More power for two! The 125cc Symphony offers comfortable riding for couples wanting to explore the entire island together.",
@@ -143,50 +143,40 @@ const LandAdventures = () => {
                 >
                   {/* Image */}
                   <div className="relative h-56 overflow-hidden">
-                    {vehicle.images ? (
-                      <>
-                        <div 
-                          className="w-full h-full cursor-pointer"
-                          onClick={() => openLightbox(vehicle)}
-                        >
-                          <img
-                            src={vehicle.images[getImageIndex(vehicle.id)]}
-                            alt={`${vehicle.name} - ${getImageIndex(vehicle.id) + 1}`}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                        </div>
-                        {vehicle.images.length > 1 && (
-                          <>
-                            <button
-                              onClick={(e) => prevImage(vehicle.id, vehicle.images!.length, e)}
-                              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
-                            >
-                              <ChevronLeft className="w-5 h-5" />
-                            </button>
-                            <button
-                              onClick={(e) => nextImage(vehicle.id, vehicle.images!.length, e)}
-                              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
-                            >
-                              <ChevronRight className="w-5 h-5" />
-                            </button>
-                            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-                              {vehicle.images.map((_, idx) => (
-                                <button
-                                  key={idx}
-                                  onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [vehicle.id]: idx })); }}
-                                  className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(vehicle.id) ? 'bg-card' : 'bg-card/50'}`}
-                                />
-                              ))}
-                            </div>
-                          </>
-                        )}
-                      </>
-                    ) : (
+                    <div 
+                      className="w-full h-full cursor-pointer"
+                      onClick={() => openLightbox(vehicle)}
+                    >
                       <img
-                        src={vehicle.image}
-                        alt={vehicle.name}
+                        src={vehicle.images[getImageIndex(vehicle.id)]}
+                        alt={`${vehicle.name} - ${getImageIndex(vehicle.id) + 1}`}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
+                    </div>
+                    {vehicle.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={(e) => prevImage(vehicle.id, vehicle.images.length, e)}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={(e) => nextImage(vehicle.id, vehicle.images.length, e)}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                          {vehicle.images.map((_, idx) => (
+                            <button
+                              key={idx}
+                              onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [vehicle.id]: idx })); }}
+                              className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(vehicle.id) ? 'bg-card' : 'bg-card/50'}`}
+                            />
+                          ))}
+                        </div>
+                      </>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent pointer-events-none" />
                     <div className="absolute top-4 right-4 flex gap-2 pointer-events-none">
