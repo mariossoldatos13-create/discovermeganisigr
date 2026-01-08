@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Ship, Users, Clock, MapPin, Gauge, FileCheck, Shield, LifeBuoy, Phone, ChevronLeft, ChevronRight } from "lucide-react";
+import { Ship, Users, Clock, MapPin, Gauge, FileCheck, Shield, LifeBuoy, Phone, ChevronLeft, ChevronRight, X } from "lucide-react";
 import boatImage from "@/assets/boat.jpg";
 import nikita55m1 from "@/assets/nikita-55m-1.jpg";
 import nikita55m2 from "@/assets/nikita-55m-2.jpg";
@@ -10,6 +10,7 @@ import nikita55m3 from "@/assets/nikita-55m-3.jpg";
 import nikita55m4 from "@/assets/nikita-55m-4.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const boats = [
   {
@@ -112,21 +113,30 @@ const Boats = () => {
   const { language, t } = useLanguage();
   const [selectedBoat, setSelectedBoat] = useState<string | null>(null);
   const [imageIndexes, setImageIndexes] = useState<Record<string, number>>({});
+  const [lightboxBoat, setLightboxBoat] = useState<{ id: string; images: string[]; name: string } | null>(null);
 
   const getImageIndex = (boatId: string) => imageIndexes[boatId] || 0;
   
-  const nextImage = (boatId: string, totalImages: number) => {
+  const nextImage = (boatId: string, totalImages: number, e?: React.MouseEvent) => {
+    e?.stopPropagation();
     setImageIndexes(prev => ({
       ...prev,
       [boatId]: (getImageIndex(boatId) + 1) % totalImages
     }));
   };
   
-  const prevImage = (boatId: string, totalImages: number) => {
+  const prevImage = (boatId: string, totalImages: number, e?: React.MouseEvent) => {
+    e?.stopPropagation();
     setImageIndexes(prev => ({
       ...prev,
       [boatId]: (getImageIndex(boatId) - 1 + totalImages) % totalImages
     }));
+  };
+
+  const openLightbox = (boat: { id: string; images?: string[]; image?: string; name: string }) => {
+    if (boat.images && boat.images.length > 0) {
+      setLightboxBoat({ id: boat.id, images: boat.images, name: boat.name });
+    }
   };
 
   return (
@@ -216,21 +226,26 @@ const Boats = () => {
                   <div className="relative h-64 overflow-hidden">
                     {boat.images ? (
                       <>
-                        <img
-                          src={boat.images[getImageIndex(boat.id)]}
-                          alt={`${boat.name} - ${getImageIndex(boat.id) + 1}`}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
+                        <div 
+                          className="w-full h-full cursor-pointer"
+                          onClick={() => openLightbox(boat)}
+                        >
+                          <img
+                            src={boat.images[getImageIndex(boat.id)]}
+                            alt={`${boat.name} - ${getImageIndex(boat.id) + 1}`}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                        </div>
                         {boat.images.length > 1 && (
                           <>
                             <button
-                              onClick={(e) => { e.stopPropagation(); prevImage(boat.id, boat.images!.length); }}
+                              onClick={(e) => prevImage(boat.id, boat.images!.length, e)}
                               className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
                             >
                               <ChevronLeft className="w-5 h-5" />
                             </button>
                             <button
-                              onClick={(e) => { e.stopPropagation(); nextImage(boat.id, boat.images!.length); }}
+                              onClick={(e) => nextImage(boat.id, boat.images!.length, e)}
                               className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-10"
                             >
                               <ChevronRight className="w-5 h-5" />
@@ -254,8 +269,8 @@ const Boats = () => {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent" />
-                    <div className="absolute top-4 right-4 flex gap-2">
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent pointer-events-none" />
+                    <div className="absolute top-4 right-4 flex gap-2 pointer-events-none">
                       <span className="px-3 py-1 bg-primary text-card text-sm font-sans font-semibold rounded-full">
                         {boat.power}
                       </span>
@@ -266,7 +281,7 @@ const Boats = () => {
                         </span>
                       )}
                     </div>
-                    <div className="absolute bottom-4 left-4">
+                    <div className="absolute bottom-4 left-4 pointer-events-none">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 rounded-xl bg-card/90 backdrop-blur-sm flex items-center justify-center">
                           <Ship className="w-6 h-6 text-primary" />
@@ -340,6 +355,59 @@ const Boats = () => {
         vehicleName={selectedBoat || ""}
         vehicleType="boat"
       />
+
+      {/* Lightbox Gallery */}
+      <Dialog open={!!lightboxBoat} onOpenChange={(open) => !open && setLightboxBoat(null)}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95 border-none">
+          {lightboxBoat && (
+            <div className="relative w-full h-[90vh] flex items-center justify-center">
+              <button
+                onClick={() => setLightboxBoat(null)}
+                className="absolute top-4 right-4 w-10 h-10 bg-card/20 backdrop-blur-sm rounded-full flex items-center justify-center text-card hover:bg-card/40 transition-colors z-20"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              
+              <img
+                src={lightboxBoat.images[getImageIndex(lightboxBoat.id)]}
+                alt={`${lightboxBoat.name} - ${getImageIndex(lightboxBoat.id) + 1}`}
+                className="max-w-full max-h-full object-contain"
+              />
+              
+              {lightboxBoat.images.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => prevImage(lightboxBoat.id, lightboxBoat.images.length, e)}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-card/20 backdrop-blur-sm rounded-full flex items-center justify-center text-card hover:bg-card/40 transition-colors"
+                  >
+                    <ChevronLeft className="w-8 h-8" />
+                  </button>
+                  <button
+                    onClick={(e) => nextImage(lightboxBoat.id, lightboxBoat.images.length, e)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-card/20 backdrop-blur-sm rounded-full flex items-center justify-center text-card hover:bg-card/40 transition-colors"
+                  >
+                    <ChevronRight className="w-8 h-8" />
+                  </button>
+                  
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                    {lightboxBoat.images.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setImageIndexes(prev => ({ ...prev, [lightboxBoat.id]: idx }))}
+                        className={`w-3 h-3 rounded-full transition-colors ${idx === getImageIndex(lightboxBoat.id) ? 'bg-card' : 'bg-card/50'}`}
+                      />
+                    ))}
+                  </div>
+                  
+                  <div className="absolute bottom-6 right-6 text-card/80 font-sans text-sm">
+                    {getImageIndex(lightboxBoat.id) + 1} / {lightboxBoat.images.length}
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
