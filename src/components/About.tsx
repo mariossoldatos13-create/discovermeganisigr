@@ -7,13 +7,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import crystalClearWaters from "@/assets/crystal-clear-waters.jpg";
 
 const features = [
   {
     icon: Waves,
     title: "Crystal Clear Waters",
     description: "The Ionian Sea around Meganisi boasts some of the clearest, most pristine waters in the Mediterranean.",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop",
+    image: crystalClearWaters,
   },
   {
     icon: Sun,
