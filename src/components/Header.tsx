@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Ship, Anchor, Bike, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
 import { Link, useLocation } from "react-router-dom";
@@ -100,9 +100,46 @@ const Header = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button variant={isScrolled ? "hero" : "hero-outline"} size="lg" asChild>
-            <a href={isHomePage ? "#contact" : "/#contact"}>{t("nav.bookNow")}</a>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant={isScrolled ? "hero" : "hero-outline"} size="lg" className="flex items-center gap-1">
+                {t("nav.bookNow")}
+                <ChevronDown className="w-4 h-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-card border-border w-48">
+              <DropdownMenuItem asChild>
+                <Link to="/boats" className="flex items-center gap-2 cursor-pointer">
+                  <Ship className="w-4 h-4" />
+                  {t("nav.boats")}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/ribs" className="flex items-center gap-2 cursor-pointer">
+                  <Anchor className="w-4 h-4" />
+                  {t("nav.ribs")}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer">
+                  <Bike className="w-4 h-4" />
+                  {t("book.scooters")}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer">
+                  <Car className="w-4 h-4" />
+                  {t("book.atv")}
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer">
+                  <Bike className="w-4 h-4" />
+                  {t("book.ebikes")}
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         {/* Mobile Controls */}
@@ -174,9 +211,46 @@ const Header = () => {
                 </Link>
               )
             ))}
-            <Button variant="hero" size="lg" asChild>
-              <a href={isHomePage ? "#contact" : "/#contact"}>{t("nav.bookNow")}</a>
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="hero" size="lg" className="w-full flex items-center justify-center gap-1">
+                  {t("nav.bookNow")}
+                  <ChevronDown className="w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="bg-card border-border w-48">
+                <DropdownMenuItem asChild>
+                  <Link to="/boats" className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Ship className="w-4 h-4" />
+                    {t("nav.boats")}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/ribs" className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Anchor className="w-4 h-4" />
+                    {t("nav.ribs")}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Bike className="w-4 h-4" />
+                    {t("book.scooters")}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Car className="w-4 h-4" />
+                    {t("book.atv")}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/land-adventures" className="flex items-center gap-2 cursor-pointer" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Bike className="w-4 h-4" />
+                    {t("book.ebikes")}
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         </div>
       )}
