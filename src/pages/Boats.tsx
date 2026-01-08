@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Ship, Users, Clock, MapPin, Gauge, FileCheck, Shield, LifeBuoy } from "lucide-react";
+import { Ship, Users, Clock, MapPin, Gauge, FileCheck, Shield, LifeBuoy, Phone } from "lucide-react";
 import boatImage from "@/assets/boat.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -146,6 +146,12 @@ const Boats = () => {
                   <FileCheck className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <p className="text-muted-foreground font-sans leading-relaxed">
                     {t("boats.safetyBriefing")}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    {t("boats.safetySupport")}
                   </p>
                 </div>
               </div>
