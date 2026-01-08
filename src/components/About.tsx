@@ -8,6 +8,7 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import crystalClearWaters from "@/assets/crystal-clear-waters.jpg";
+import scenicLandscapes from "@/assets/scenic-landscapes.jpg";
 
 const features = [
   {
@@ -26,7 +27,7 @@ const features = [
     icon: Mountain,
     title: "Scenic Landscapes",
     description: "Discover hidden coves, olive groves, and dramatic cliffs that define the island's natural beauty.",
-    image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&h=600&fit=crop",
+    image: scenicLandscapes,
   },
   {
     icon: MapPin,
