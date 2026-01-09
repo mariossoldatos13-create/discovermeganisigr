@@ -88,12 +88,12 @@ const About = () => {
             <CarouselContent>
               {features.map((feature, index) => (
                 <CarouselItem key={feature.title} className="basis-full">
-                  <div className="group relative h-[70vh] min-h-[500px] overflow-hidden bg-foreground">
+                  <div className="group relative h-[70vh] min-h-[500px] overflow-hidden">
                     {/* Background Image */}
                     <img
                       src={feature.image}
                       alt={feature.title}
-                      className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/50 to-foreground/20" />
