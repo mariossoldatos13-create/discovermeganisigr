@@ -111,6 +111,120 @@ const Ribs = () => {
           </div>
         </section>
 
+        {/* RIBs Grid */}
+        <section className="py-20 bg-sand">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {ribs.map((rib, index) => (
+                <article
+                  key={rib.id}
+                  className="group bg-card rounded-3xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500 animate-fade-in opacity-0"
+                  style={{ animationDelay: `${0.1 * (index + 1)}s` }}
+                >
+                  {/* Header above image */}
+                  <div className="p-6 pb-4 border-b border-border">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Ship className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h2 className="text-foreground font-display text-2xl font-bold">{rib.name}</h2>
+                        <span className="text-primary font-sans font-semibold text-sm">{rib.power}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Image */}
+                  <div className="relative h-64 overflow-hidden">
+                    <div 
+                      className="w-full h-full cursor-pointer relative z-10"
+                      onClick={() => openLightbox(rib)}
+                    >
+                      <img
+                        src={rib.images[getImageIndex(rib.id)]}
+                        alt={`${rib.name} - ${getImageIndex(rib.id) + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    </div>
+                    {rib.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); prevImage(rib.id, rib.images.length, e); }}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-20"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); nextImage(rib.id, rib.images.length, e); }}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-20"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                          {rib.images.map((_, idx) => (
+                            <button
+                              key={idx}
+                              onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [rib.id]: idx })); }}
+                              className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(rib.id) ? 'bg-card' : 'bg-card/50'}`}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 md:p-8">
+                    <p className="text-muted-foreground font-sans mb-6 leading-relaxed">
+                      {rib.description[language]}
+                    </p>
+
+                    {/* Specs */}
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="flex items-center gap-2 text-foreground">
+                        <Users className="w-5 h-5 text-primary" />
+                        <span className="font-sans text-sm">{t("boats.upTo")} {rib.capacity} {t("boats.passengers")}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-foreground">
+                        <Clock className="w-5 h-5 text-primary" />
+                        <span className="font-sans text-sm">{rib.hours}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-foreground col-span-2">
+                        <MapPin className="w-5 h-5 text-primary" />
+                        <span className="font-sans text-sm">{rib.destinations.join(", ")}</span>
+                      </div>
+                      <div className="flex items-center gap-2 col-span-2 bg-amber-100 text-amber-800 px-3 py-2 rounded-lg">
+                        <Gauge className="w-5 h-5" />
+                        <span className="font-sans text-sm font-medium">{rib.licenseType[language]} {t("boats.required")}</span>
+                      </div>
+                    </div>
+
+                    {/* Features */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {rib.features[language].map((feature) => (
+                        <span
+                          key={feature}
+                          className="px-3 py-1 bg-sea-light text-primary text-sm font-sans rounded-full"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Button 
+                      variant="contact" 
+                      className="w-full"
+                      onClick={() => setSelectedRib(rib.name)}
+                    >
+                      {t("boats.inquire")} {rib.name}
+                    </Button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* RIB Features Section */}
         <section className="py-12 bg-secondary">
           <div className="container mx-auto px-4">
@@ -239,120 +353,6 @@ const Ribs = () => {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* RIBs Grid */}
-        <section className="py-20 bg-sand">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {ribs.map((rib, index) => (
-                <article
-                  key={rib.id}
-                  className="group bg-card rounded-3xl overflow-hidden shadow-card hover:shadow-elevated transition-all duration-500 animate-fade-in opacity-0"
-                  style={{ animationDelay: `${0.1 * (index + 1)}s` }}
-                >
-                  {/* Header above image */}
-                  <div className="p-6 pb-4 border-b border-border">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                        <Ship className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h2 className="text-foreground font-display text-2xl font-bold">{rib.name}</h2>
-                        <span className="text-primary font-sans font-semibold text-sm">{rib.power}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Image */}
-                  <div className="relative h-64 overflow-hidden">
-                    <div 
-                      className="w-full h-full cursor-pointer relative z-10"
-                      onClick={() => openLightbox(rib)}
-                    >
-                      <img
-                        src={rib.images[getImageIndex(rib.id)]}
-                        alt={`${rib.name} - ${getImageIndex(rib.id) + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                    </div>
-                    {rib.images.length > 1 && (
-                      <>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); prevImage(rib.id, rib.images.length, e); }}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-20"
-                        >
-                          <ChevronLeft className="w-5 h-5" />
-                        </button>
-                        <button
-                          onClick={(e) => { e.stopPropagation(); nextImage(rib.id, rib.images.length, e); }}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-card/80 backdrop-blur-sm rounded-full flex items-center justify-center text-foreground hover:bg-card transition-colors z-20"
-                        >
-                          <ChevronRight className="w-5 h-5" />
-                        </button>
-                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
-                          {rib.images.map((_, idx) => (
-                            <button
-                              key={idx}
-                              onClick={(e) => { e.stopPropagation(); setImageIndexes(prev => ({ ...prev, [rib.id]: idx })); }}
-                              className={`w-2 h-2 rounded-full transition-colors ${idx === getImageIndex(rib.id) ? 'bg-card' : 'bg-card/50'}`}
-                            />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 md:p-8">
-                    <p className="text-muted-foreground font-sans mb-6 leading-relaxed">
-                      {rib.description[language]}
-                    </p>
-
-                    {/* Specs */}
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="flex items-center gap-2 text-foreground">
-                        <Users className="w-5 h-5 text-primary" />
-                        <span className="font-sans text-sm">{t("boats.upTo")} {rib.capacity} {t("boats.passengers")}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-foreground">
-                        <Clock className="w-5 h-5 text-primary" />
-                        <span className="font-sans text-sm">{rib.hours}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-foreground col-span-2">
-                        <MapPin className="w-5 h-5 text-primary" />
-                        <span className="font-sans text-sm">{rib.destinations.join(", ")}</span>
-                      </div>
-                      <div className="flex items-center gap-2 col-span-2 bg-amber-100 text-amber-800 px-3 py-2 rounded-lg">
-                        <Gauge className="w-5 h-5" />
-                        <span className="font-sans text-sm font-medium">{rib.licenseType[language]} {t("boats.required")}</span>
-                      </div>
-                    </div>
-
-                    {/* Features */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {rib.features[language].map((feature) => (
-                        <span
-                          key={feature}
-                          className="px-3 py-1 bg-sea-light text-primary text-sm font-sans rounded-full"
-                        >
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-
-                    <Button 
-                      variant="contact" 
-                      className="w-full"
-                      onClick={() => setSelectedRib(rib.name)}
-                    >
-                      {t("boats.inquire")} {rib.name}
-                    </Button>
-                  </div>
-                </article>
-              ))}
             </div>
           </div>
         </section>
