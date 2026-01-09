@@ -9,6 +9,7 @@ import {
 } from "./ui/carousel";
 import crystalClearWaters from "@/assets/crystal-clear-waters.jpg";
 import scenicLandscapes from "@/assets/scenic-landscapes.jpg";
+import peaceTranquility from "@/assets/peace-tranquility.jpg";
 
 const features = [
   {
@@ -21,7 +22,7 @@ const features = [
     icon: Sun,
     title: "Peace & Tranquility",
     description: "Escape the crowds and discover a serene paradise where time slows down. Meganisi remains unspoiled by mass tourism.",
-    image: "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=800&h=600&fit=crop",
+    image: peaceTranquility,
   },
   {
     icon: Mountain,
