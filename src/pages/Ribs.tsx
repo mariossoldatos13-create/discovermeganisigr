@@ -138,6 +138,57 @@ const Ribs = () => {
           </div>
         </section>
 
+        {/* Important Information Section */}
+        <section className="py-12 bg-amber-50 border-y border-amber-200">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
+                {language === "en" ? "Important Information" : "Σημαντικές Πληροφορίες"}
+              </h2>
+              <div className="grid gap-4">
+                <div className="flex items-start gap-4 bg-white rounded-xl p-4 shadow-sm border border-amber-200">
+                  <div className="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold flex-shrink-0">1</div>
+                  <p className="text-foreground font-sans leading-relaxed">
+                    <span className="font-bold bg-amber-200 px-1 rounded">
+                      {language === "en" ? "Gasoline is NOT included in the rental price" : "Η βενζίνη ΔΕΝ περιλαμβάνεται στην τιμή ενοικίασης"}
+                    </span>
+                    {language === "en" 
+                      ? " and is charged extra at the end of the cruise with the current rate per litre of the local gas station."
+                      : " και χρεώνεται επιπλέον στο τέλος της κρουαζιέρας με την τρέχουσα τιμή ανά λίτρο του τοπικού πρατηρίου."}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 bg-white rounded-xl p-4 shadow-sm border border-amber-200">
+                  <div className="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
+                  <p className="text-foreground font-sans leading-relaxed">
+                    <span className="font-bold bg-amber-200 px-1 rounded">
+                      {language === "en" ? "A cool box is provided free of charge" : "Ένα ψυγείο παρέχεται δωρεάν"}
+                    </span>
+                    {language === "en" ? " upon departure." : " κατά την αναχώρηση."}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 bg-white rounded-xl p-4 shadow-sm border border-amber-200">
+                  <div className="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold flex-shrink-0">3</div>
+                  <p className="text-foreground font-sans leading-relaxed">
+                    <span className="font-bold bg-amber-200 px-1 rounded">
+                      {language === "en" ? "Before departure, every vessel is full of gasoline" : "Πριν την αναχώρηση, κάθε σκάφος είναι γεμάτο βενζίνη"}
+                    </span>
+                    {language === "en" ? " – more than enough to last the whole day." : " – περισσότερη από αρκετή για όλη την ημέρα."}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 bg-white rounded-xl p-4 shadow-sm border border-amber-200">
+                  <div className="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold flex-shrink-0">4</div>
+                  <p className="text-foreground font-sans leading-relaxed">
+                    <span className="font-bold bg-amber-200 px-1 rounded">
+                      {language === "en" ? "All of our vessels have third-party insurance" : "Όλα τα σκάφη μας έχουν ασφάλιση τρίτων"}
+                    </span>
+                    {language === "en" ? ". Full/comprehensive insurance is not available." : ". Πλήρης/ολοκληρωμένη ασφάλιση δεν είναι διαθέσιμη."}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* RIBs Grid */}
         <section className="py-20 bg-sand">
           <div className="container mx-auto px-4">
