@@ -10,6 +10,7 @@ import {
 import crystalClearWaters from "@/assets/crystal-clear-waters.jpg";
 import scenicLandscapes from "@/assets/scenic-landscapes.jpg";
 import peaceTranquility from "@/assets/peace-tranquility.jpg";
+import warmHospitality from "@/assets/warm-hospitality.jpg";
 
 const features = [
   {
@@ -34,7 +35,7 @@ const features = [
     icon: MapPin,
     title: "Warm Hospitality",
     description: "Experience genuine Greek warmth in charming villages where locals welcome you like family.",
-    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop",
+    image: warmHospitality,
   },
 ];
 
