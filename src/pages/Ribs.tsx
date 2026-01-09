@@ -146,10 +146,10 @@ const Ribs = () => {
                 {language === "en" ? "Important Information" : "Σημαντικές Πληροφορίες"}
               </h2>
               <div className="space-y-4">
-                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                <div className="flex items-start gap-4 text-left rounded-xl p-4">
                   <div className="w-6 h-6 rounded-full bg-primary text-card flex items-center justify-center font-bold flex-shrink-0 mt-1 text-sm">1</div>
-                  <p className="text-muted-foreground font-sans leading-relaxed">
-                    <span className="font-semibold text-foreground">
+                  <p className="text-foreground font-sans leading-relaxed">
+                    <span className="font-semibold">
                       {language === "en" ? "Gasoline is NOT included in the rental price" : "Η βενζίνη ΔΕΝ περιλαμβάνεται στην τιμή ενοικίασης"}
                     </span>
                     {language === "en" 
