@@ -174,111 +174,6 @@ const Boats = () => {
           </div>
         </section>
 
-        {/* Skipper Service Section */}
-        <section className="py-12 bg-secondary">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-                <Ship className="w-8 h-8 text-primary" />
-              </div>
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
-                {t("boats.skipperTitle")}
-              </h2>
-              <p className="text-muted-foreground text-lg font-sans leading-relaxed mb-4">
-                {t("boats.skipperDesc")}
-              </p>
-              <p className="text-muted-foreground font-sans leading-relaxed">
-                <span className="text-foreground font-medium">{t("boats.skipperNote")}</span>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Safety Section */}
-        <section className="py-12 bg-card border-y border-border">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
-                <Shield className="w-8 h-8 text-accent" />
-              </div>
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
-                {t("boats.safetyTitle")}
-              </h2>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
-                  <LifeBuoy className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <p className="text-muted-foreground font-sans leading-relaxed">
-                    {t("boats.safetyEquipment")}
-                  </p>
-                </div>
-                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
-                  <FileCheck className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <p className="text-muted-foreground font-sans leading-relaxed">
-                    {t("boats.safetyBriefing")}
-                  </p>
-                </div>
-                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
-                  <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                  <p className="text-muted-foreground font-sans leading-relaxed">
-                    {t("boats.safetySupport")}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Important Information Section */}
-        <section className="py-12 bg-card border-y border-border">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
-                {language === "en" ? "Important Information" : "Σημαντικές Πληροφορίες"}
-              </h2>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 text-left rounded-xl p-4">
-                  <div className="w-6 h-6 rounded-full bg-primary text-card flex items-center justify-center font-bold flex-shrink-0 mt-1 text-sm">1</div>
-                  <p className="text-foreground font-sans leading-relaxed">
-                    <span className="font-semibold">
-                      {language === "en" ? "Gasoline is NOT included in the rental price" : "Η βενζίνη ΔΕΝ περιλαμβάνεται στην τιμή ενοικίασης"}
-                    </span>
-                    {language === "en" 
-                      ? " and is charged extra at the end of the cruise with the current rate per litre of the local gas station."
-                      : " και χρεώνεται επιπλέον στο τέλος της κρουαζιέρας με την τρέχουσα τιμή ανά λίτρο του τοπικού πρατηρίου."}
-                  </p>
-                </div>
-                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
-                  <div className="w-6 h-6 rounded-full bg-primary text-card flex items-center justify-center font-bold flex-shrink-0 mt-1 text-sm">2</div>
-                  <p className="text-muted-foreground font-sans leading-relaxed">
-                    <span className="font-semibold text-foreground">
-                      {language === "en" ? "A cool box is provided free of charge" : "Ένα ψυγείο παρέχεται δωρεάν"}
-                    </span>
-                    {language === "en" ? " upon departure." : " κατά την αναχώρηση."}
-                  </p>
-                </div>
-                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
-                  <div className="w-6 h-6 rounded-full bg-primary text-card flex items-center justify-center font-bold flex-shrink-0 mt-1 text-sm">3</div>
-                  <p className="text-muted-foreground font-sans leading-relaxed">
-                    <span className="font-semibold text-foreground">
-                      {language === "en" ? "Before departure, every vessel is full of gasoline" : "Πριν την αναχώρηση, κάθε σκάφος είναι γεμάτο βενζίνη"}
-                    </span>
-                    {language === "en" ? " – more than enough to last the whole day." : " – περισσότερη από αρκετή για όλη την ημέρα."}
-                  </p>
-                </div>
-                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
-                  <div className="w-6 h-6 rounded-full bg-primary text-card flex items-center justify-center font-bold flex-shrink-0 mt-1 text-sm">4</div>
-                  <p className="text-muted-foreground font-sans leading-relaxed">
-                    <span className="font-semibold text-foreground">
-                      {language === "en" ? "All of our vessels have third-party insurance" : "Όλα τα σκάφη μας έχουν ασφάλιση τρίτων"}
-                    </span>
-                    {language === "en" ? ". Full/comprehensive insurance is not available." : ". Πλήρης/ολοκληρωμένη ασφάλιση δεν είναι διαθέσιμη."}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Boats Grid */}
         <section className="py-20 bg-sand">
           <div className="container mx-auto px-4">
@@ -399,6 +294,111 @@ const Boats = () => {
                   </div>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Skipper Service Section */}
+        <section className="py-12 bg-secondary">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                <Ship className="w-8 h-8 text-primary" />
+              </div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                {t("boats.skipperTitle")}
+              </h2>
+              <p className="text-muted-foreground text-lg font-sans leading-relaxed mb-4">
+                {t("boats.skipperDesc")}
+              </p>
+              <p className="text-muted-foreground font-sans leading-relaxed">
+                <span className="text-foreground font-medium">{t("boats.skipperNote")}</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Safety Section */}
+        <section className="py-12 bg-card border-y border-border">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
+                <Shield className="w-8 h-8 text-accent" />
+              </div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                {t("boats.safetyTitle")}
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <LifeBuoy className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    {t("boats.safetyEquipment")}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <FileCheck className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    {t("boats.safetyBriefing")}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    {t("boats.safetySupport")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Important Information Section */}
+        <section className="py-12 bg-card border-y border-border">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 text-center">
+                {language === "en" ? "Important Information" : "Σημαντικές Πληροφορίες"}
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 text-left rounded-xl p-4">
+                  <div className="w-6 h-6 rounded-full bg-primary text-card flex items-center justify-center font-bold flex-shrink-0 mt-1 text-sm">1</div>
+                  <p className="text-foreground font-sans leading-relaxed">
+                    <span className="font-semibold">
+                      {language === "en" ? "Gasoline is NOT included in the rental price" : "Η βενζίνη ΔΕΝ περιλαμβάνεται στην τιμή ενοικίασης"}
+                    </span>
+                    {language === "en" 
+                      ? " and is charged extra at the end of the cruise with the current rate per litre of the local gas station."
+                      : " και χρεώνεται επιπλέον στο τέλος της κρουαζιέρας με την τρέχουσα τιμή ανά λίτρο του τοπικού πρατηρίου."}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <div className="w-6 h-6 rounded-full bg-primary text-card flex items-center justify-center font-bold flex-shrink-0 mt-1 text-sm">2</div>
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    <span className="font-semibold text-foreground">
+                      {language === "en" ? "A cool box is provided free of charge" : "Ένα ψυγείο παρέχεται δωρεάν"}
+                    </span>
+                    {language === "en" ? " upon departure." : " κατά την αναχώρηση."}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <div className="w-6 h-6 rounded-full bg-primary text-card flex items-center justify-center font-bold flex-shrink-0 mt-1 text-sm">3</div>
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    <span className="font-semibold text-foreground">
+                      {language === "en" ? "Before departure, every vessel is full of gasoline" : "Πριν την αναχώρηση, κάθε σκάφος είναι γεμάτο βενζίνη"}
+                    </span>
+                    {language === "en" ? " – more than enough to last the whole day." : " – περισσότερη από αρκετή για όλη την ημέρα."}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <div className="w-6 h-6 rounded-full bg-primary text-card flex items-center justify-center font-bold flex-shrink-0 mt-1 text-sm">4</div>
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    <span className="font-semibold text-foreground">
+                      {language === "en" ? "All of our vessels have third-party insurance" : "Όλα τα σκάφη μας έχουν ασφάλιση τρίτων"}
+                    </span>
+                    {language === "en" ? ". Full/comprehensive insurance is not available." : ". Πλήρης/ολοκληρωμένη ασφάλιση δεν είναι διαθέσιμη."}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
