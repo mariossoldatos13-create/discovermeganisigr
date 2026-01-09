@@ -220,9 +220,9 @@ const Ribs = () => {
                         <MapPin className="w-5 h-5 text-primary" />
                         <span className="font-sans text-sm">{rib.destinations.join(", ")}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-foreground col-span-2">
-                        <Gauge className="w-5 h-5 text-accent" />
-                        <span className="font-sans text-sm text-accent">{rib.licenseType[language]} {t("boats.required")}</span>
+                      <div className="flex items-center gap-2 col-span-2 bg-amber-100 text-amber-800 px-3 py-2 rounded-lg">
+                        <Gauge className="w-5 h-5" />
+                        <span className="font-sans text-sm font-medium">{rib.licenseType[language]} {t("boats.required")}</span>
                       </div>
                     </div>
 
