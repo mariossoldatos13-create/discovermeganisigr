@@ -41,7 +41,7 @@ const ribs = [
     name: "Capelli Tempest 7.70m",
     power: "250 HP",
     images: [tempest7701, tempest7702, tempest7703, tempest7704, tempest7705],
-    capacity: 9,
+    capacity: 12,
     license: true,
     licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
     destinations: ["Meganisi", "Kalamos", "Kastos", "Atokos", "Ithaca"],
