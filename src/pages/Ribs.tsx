@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Ship, Users, Clock, MapPin, Gauge, Anchor, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Ship, Users, Clock, MapPin, Gauge, Anchor, ChevronLeft, ChevronRight, X, Shield, LifeBuoy, FileCheck, Phone } from "lucide-react";
 import ribBoatImage from "@/assets/rib-boat.jpg";
 import gene6701 from "@/assets/gene-670-1.jpg";
 import gene6702 from "@/assets/gene-670-2.jpg";
@@ -134,6 +134,60 @@ const Ribs = () => {
                 }
                 <span className="text-foreground font-medium"> {t("boats.skipperNote")}</span>
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Skipper Service Section */}
+        <section className="py-12 bg-secondary">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
+                <Ship className="w-8 h-8 text-primary" />
+              </div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                {t("boats.skipperTitle")}
+              </h2>
+              <p className="text-muted-foreground text-lg font-sans leading-relaxed mb-4">
+                {t("boats.skipperDesc")}
+              </p>
+              <p className="text-muted-foreground font-sans leading-relaxed">
+                <span className="text-foreground font-medium">{t("boats.skipperNote")}</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Safety Section */}
+        <section className="py-12 bg-card border-y border-border">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-6">
+                <Shield className="w-8 h-8 text-accent" />
+              </div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                {t("boats.safetyTitle")}
+              </h2>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <LifeBuoy className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    {t("boats.safetyEquipment")}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <FileCheck className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    {t("boats.safetyBriefing")}
+                  </p>
+                </div>
+                <div className="flex items-start gap-4 text-left bg-secondary/50 rounded-xl p-4">
+                  <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <p className="text-muted-foreground font-sans leading-relaxed">
+                    {t("boats.safetySupport")}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
