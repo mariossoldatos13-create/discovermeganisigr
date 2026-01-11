@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import boatImage from "@/assets/boats-fleet.jpg";
 import ribBoatImage from "@/assets/ribs-fleet.jpg";
-import motorbikeImage from "@/assets/motorbike.jpg";
+import motorbikeImage from "@/assets/land-adventures-fleet.jpg";
 import cruiseImage from "@/assets/cruise-meganisi.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 
