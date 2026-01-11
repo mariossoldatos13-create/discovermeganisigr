@@ -2,7 +2,7 @@ import { Ship, Bike, Compass, Anchor } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import boatImage from "@/assets/boats-fleet.jpg";
-import ribBoatImage from "@/assets/rib-boat.jpg";
+import ribBoatImage from "@/assets/ribs-fleet.jpg";
 import motorbikeImage from "@/assets/motorbike.jpg";
 import cruiseImage from "@/assets/cruise-meganisi.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
