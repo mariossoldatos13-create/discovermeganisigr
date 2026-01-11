@@ -18,8 +18,8 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const ribs = [
   {
-    id: "gene-670-rib",
-    name: "Gene 6.70m",
+    id: "gene-720-rib",
+    name: "Gene 7.2m",
     power: "250 HP",
     images: [gene6701, gene6702, gene6703],
     capacity: 9,
@@ -37,8 +37,8 @@ const ribs = [
     },
   },
   {
-    id: "tempest-770",
-    name: "Capelli Tempest 7.70m",
+    id: "tempest-800",
+    name: "Capelli Tempest 8m",
     power: "250 HP",
     images: [tempest7701, tempest7702, tempest7703, tempest7704, tempest7705],
     capacity: 12,
@@ -47,8 +47,8 @@ const ribs = [
     destinations: ["Meganisi", "Kalamos", "Kastos", "Atokos", "Ithaca"],
     hours: "9:00 - 18:00",
     description: {
-      en: "The flagship of our fleet. The Capelli Tempest 7.70m offers the ultimate boating experience with exceptional space, power, and range for the most adventurous explorers.",
-      el: "Η ναυαρχίδα του στόλου μας. Το Capelli Tempest 7.70m προσφέρει την απόλυτη εμπειρία θαλάσσης με εξαιρετικό χώρο, ισχύ και εμβέλεια για τους πιο τολμηρούς εξερευνητές."
+      en: "The flagship of our fleet. The Capelli Tempest 8m offers the ultimate boating experience with exceptional space, power, and range for the most adventurous explorers.",
+      el: "Η ναυαρχίδα του στόλου μας. Το Capelli Tempest 8m προσφέρει την απόλυτη εμπειρία θαλάσσης με εξαιρετικό χώρο, ισχύ και εμβέλεια για τους πιο τολμηρούς εξερευνητές."
     },
     features: {
       en: ["Flagship vessel", "Maximum comfort", "Extended range", "Premium amenities"],
