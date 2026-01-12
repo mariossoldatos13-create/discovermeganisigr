@@ -25,7 +25,7 @@ const BookingInquiryDialog = ({
   const { language } = useLanguage();
 
   const businessPhone = "306972381929";
-  const businessEmail = "info@discovermeganisi.gr";
+  const businessEmail = "discovermeganisi@gmail.com";
 
   const handleEmailClick = () => {
     const subject = encodeURIComponent(
