@@ -30,8 +30,8 @@ const contactMethods = [
     icon: Mail,
     title: "Email",
     description: "For detailed inquiries",
-    action: "mailto:info@discovermeganisi.gr",
-    buttonText: "info@discovermeganisi.gr",
+    action: "mailto:discovermeganisi@gmail.com",
+    buttonText: "discovermeganisi@gmail.com",
     variant: "contact" as const,
   },
 ];
