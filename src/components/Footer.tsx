@@ -20,7 +20,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://wa.me/306972381928"
+                href="https://wa.me/306972381929"
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500 hover:bg-green-600 text-white font-semibold transition-colors duration-300"
                 aria-label="Book with us on WhatsApp"
               >
@@ -30,7 +30,7 @@ const Footer = () => {
                 Book with us
               </a>
               <a
-                href="viber://chat?number=+306972381928"
+                href="viber://chat?number=+306972381929"
                 className="w-10 h-10 rounded-full bg-card/10 hover:bg-accent flex items-center justify-center transition-colors duration-300"
                 aria-label="Viber"
               >
