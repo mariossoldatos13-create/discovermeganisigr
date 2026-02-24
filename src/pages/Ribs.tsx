@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Ship, Users, Clock, MapPin, Gauge, Anchor, ChevronLeft, ChevronRight, X, Shield, LifeBuoy, FileCheck, Phone } from "lucide-react";
+import { Ship, Users, Clock, MapPin, Gauge, Anchor, ChevronLeft, ChevronRight, X, Shield, LifeBuoy, FileCheck, Phone, Navigation, Radio, ShowerHead, Refrigerator, Usb } from "lucide-react";
 import ribBoatImage from "@/assets/rib-boat.jpg";
 import gene6701 from "@/assets/gene-670-1.jpg";
 import gene6702 from "@/assets/gene-670-2.jpg";
@@ -35,6 +35,10 @@ const ribs = [
       en: ["RIB stability", "250HP power", "Long-range capability", "Premium experience"],
       el: ["Σταθερότητα RIB", "Ισχύς 250HP", "Μεγάλη εμβέλεια", "Premium εμπειρία"]
     },
+    equipment: {
+      en: ["GPS", "Radio", "Shower", "Cool Box", "USB Charger"],
+      el: ["GPS", "Ραδιόφωνο", "Ντους", "Ψυγείο", "Θύρα USB"]
+    },
   },
   {
     id: "tempest-800",
@@ -53,6 +57,10 @@ const ribs = [
     features: {
       en: ["Flagship vessel", "Maximum comfort", "Extended range", "Premium amenities"],
       el: ["Ναυαρχίδα", "Μέγιστη άνεση", "Εκτεταμένη εμβέλεια", "Premium ανέσεις"]
+    },
+    equipment: {
+      en: ["GPS", "Radio", "Shower", "Cool Box", "USB Charger"],
+      el: ["GPS", "Ραδιόφωνο", "Ντους", "Ψυγείο", "Θύρα USB"]
     },
   },
 ];
@@ -209,6 +217,23 @@ const Ribs = () => {
                           {feature}
                         </span>
                       ))}
+                    </div>
+
+                    {/* Equipment */}
+                    <div className="mb-6">
+                      <p className="text-sm font-semibold text-foreground mb-2 font-sans">
+                        {language === "en" ? "Equipment" : "Εξοπλισμός"}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {rib.equipment[language].map((item) => (
+                          <span
+                            key={item}
+                            className="px-3 py-1 bg-secondary text-muted-foreground text-sm font-sans rounded-full border border-border"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
                     </div>
 
                     <Button 
