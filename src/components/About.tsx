@@ -180,25 +180,6 @@ const About = () => {
               </div>
             ))}
           </div>
-
-          {/* Google Reviews Button */}
-          <div className="text-center mt-12">
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="group"
-            >
-              <a
-                href="https://www.google.com/maps/place/Discover+Meganisi+%7C+boat+rentals/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>See All Reviews on Google</span>
-                <ExternalLink className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-          </div>
         </div>
       </div>
     </section>
