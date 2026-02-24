@@ -10,7 +10,11 @@ import cruiseKalamosKastos from "@/assets/cruise-kalamos-kastos.jpg";
 import cruiseKalamos1 from "@/assets/cruise-kalamos-1.jpg";
 import cruiseKalamos2 from "@/assets/cruise-kalamos-2.jpg";
 import cruiseKalamos3 from "@/assets/cruise-kalamos-3.jpg";
-import cruiseWestLefkas from "@/assets/cruise-west-lefkas.jpg";
+import lefkada1 from "@/assets/lefkada-1.jpg";
+import lefkada2 from "@/assets/lefkada-2.jpg";
+import lefkada3 from "@/assets/lefkada-3.jpg";
+import lefkada4 from "@/assets/lefkada-4.jpg";
+import lefkada6 from "@/assets/lefkada-6.jpg";
 import ithaca1 from "@/assets/ithaca-1.jpg";
 import ithaca2 from "@/assets/ithaca-2.jpg";
 import ithaca3 from "@/assets/ithaca-3.jpg";
@@ -41,7 +45,7 @@ const cruises = [
   {
     id: "west-lefkas",
     name: "West Lefkada Coast",
-    images: [cruiseWestLefkas],
+    images: [lefkada1, lefkada2, lefkada3, lefkada4, lefkada6],
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Porto Katsiki", "Egremni Beach", "Dramatic cliffs", "Sunset views"],
     description: "Experience the dramatic western coast of Lefkada, home to some of Greece's most famous beaches. Marvel at the towering white cliffs of Porto Katsiki, consistently ranked among the best beaches in Europe. Visit the stunning Egremni beach and discover hidden coves only accessible by sea. The turquoise waters against the white limestone cliffs create a landscape that seems almost unreal.",
