@@ -44,7 +44,7 @@ const cruises = [
   },
   {
     id: "ithaca",
-    name: "Ithaca - Home of Odysseus",
+    name: "Ithaca & Atokos",
     images: [cruiseIthaca],
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Mythical history", "Vathy harbor", "Traditional culture", "Scenic bays"],
