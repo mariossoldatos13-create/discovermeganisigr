@@ -27,7 +27,7 @@ const Fleet = () => {
       title: t("fleet.ribs"),
       subtitle: t("fleet.ribs.subtitle"),
       description: t("fleet.ribs.description"),
-      count: "2 " + t("common.vessels"),
+      count: "3 " + t("common.vessels"),
       image: ribBoatImage,
       href: "/ribs",
     },
