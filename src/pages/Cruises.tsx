@@ -27,7 +27,7 @@ const cruises = [
   {
     id: "kalamos-kastos",
     name: "Kalamos & Kastos",
-    images: [cruiseKalamosKastos, cruiseKalamos1, cruiseKalamos2, cruiseKalamos3],
+    images: [cruiseKalamos1, cruiseKalamos2, cruiseKalamos3],
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Unspoiled nature", "Pine forests", "Quiet harbors", "Swimming spots"],
     description: "Venture to the untouched paradise of Kalamos and Kastos, two of the most pristine islands in the Ionian. Kalamos is covered in dense pine forests that meet crystal-clear waters, while tiny Kastos offers a peaceful escape with its charming harbor and welcoming tavernas. These islands remain largely undiscovered by mass tourism, making them perfect for those seeking tranquility and natural beauty.",
