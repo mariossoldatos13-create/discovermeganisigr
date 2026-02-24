@@ -49,7 +49,7 @@ const cruises = [
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Mythical history", "Vathy harbor", "Traditional culture", "Scenic bays"],
     description: "Follow in the footsteps of Odysseus to the legendary island of Ithaca. This mythical destination captivates visitors with its natural beauty and rich history. Explore the picturesque capital of Vathy, nestled in one of the world's largest natural harbors. Visit traditional villages, swim in secluded bays, and feel the magic of the island that inspired Homer's epic tale. A journey to Ithaca is truly a journey through time.",
-    boatsAvailable: ["Gene 670 RIB", "Victor Tempest"],
+    boatsAvailable: ["Gene 7.00m", "Capelli Tempest 8.00m", "Maestrale 8.00m"],
   },
 ];
 
