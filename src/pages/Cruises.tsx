@@ -40,7 +40,7 @@ const cruises = [
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Porto Katsiki", "Egremni Beach", "Dramatic cliffs", "Sunset views"],
     description: "Experience the dramatic western coast of Lefkada, home to some of Greece's most famous beaches. Marvel at the towering white cliffs of Porto Katsiki, consistently ranked among the best beaches in Europe. Visit the stunning Egremni beach and discover hidden coves only accessible by sea. The turquoise waters against the white limestone cliffs create a landscape that seems almost unreal.",
-    boatsAvailable: ["Gene 670 RIB", "Victor Tempest"],
+    boatsAvailable: ["Gene 7.00m", "Capelli Tempest 8.00m", "Maestrale 8.00m"],
   },
   {
     id: "ithaca",
