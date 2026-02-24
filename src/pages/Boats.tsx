@@ -41,6 +41,10 @@ const boats = [
       en: ["No license required", "Fuel efficient", "Easy handling", "Shaded canopy"],
       el: ["Χωρίς δίπλωμα", "Οικονομικό", "Εύκολος χειρισμός", "Σκίαστρο"]
     },
+    equipment: {
+      en: ["Cool Box"],
+      el: ["Ψυγείο"]
+    },
   },
   {
     id: "nikita-500",
@@ -60,6 +64,10 @@ const boats = [
       en: ["Easy to handle", "Comfortable seating", "Powerful engine", "Great stability"],
       el: ["Εύκολος χειρισμός", "Άνετα καθίσματα", "Ισχυρός κινητήρας", "Μεγάλη σταθερότητα"]
     },
+    equipment: {
+      en: ["Cool Box"],
+      el: ["Ψυγείο"]
+    },
   },
   {
     id: "nikita-sv499",
@@ -78,6 +86,10 @@ const boats = [
     features: {
       en: ["Fast & fuel efficient", "Island hopping capable", "Comfortable layout", "Sun protection"],
       el: ["Γρήγορο & οικονομικό", "Ικανό για νησιοπήδημα", "Άνετη διάταξη", "Προστασία από ήλιο"]
+    },
+    equipment: {
+      en: ["Cool Box"],
+      el: ["Ψυγείο"]
     },
   },
   {
