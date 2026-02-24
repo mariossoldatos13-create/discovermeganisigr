@@ -98,6 +98,10 @@ const boats = [
       en: ["Island hopping capable", "Spacious deck", "Powerful 115HP engine", "Premium comfort"],
       el: ["Ικανό για νησιοπήδημα", "Ευρύχωρο κατάστρωμα", "Ισχυρός κινητήρας 115HP", "Premium άνεση"]
     },
+    equipment: {
+      en: ["Cool Box", "GPS"],
+      el: ["Ψυγείο", "GPS"]
+    },
   },
   {
     id: "poseidon-550",
@@ -116,6 +120,10 @@ const boats = [
     features: {
       en: ["Reliable performance", "Island hopping capable", "Comfortable layout", "Sun protection"],
       el: ["Αξιόπιστες επιδόσεις", "Ικανό για νησιοπήδημα", "Άνετη διάταξη", "Προστασία από ήλιο"]
+    },
+    equipment: {
+      en: ["Cool Box", "GPS"],
+      el: ["Ψυγείο", "GPS"]
     },
   },
 ];
@@ -283,6 +291,25 @@ const Boats = () => {
                         </span>
                       ))}
                     </div>
+
+                    {/* Equipment */}
+                    {boat.equipment && (
+                      <div className="mb-6">
+                        <p className="text-sm font-semibold text-foreground mb-2 font-sans">
+                          {language === "en" ? "Equipment" : "Εξοπλισμός"}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {boat.equipment[language].map((item) => (
+                            <span
+                              key={item}
+                              className="px-3 py-1 bg-secondary text-muted-foreground text-sm font-sans rounded-full border border-border"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
 
                     <Button 
                       variant="contact" 
