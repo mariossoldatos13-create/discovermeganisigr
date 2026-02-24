@@ -22,7 +22,7 @@ const cruises = [
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Hidden beaches", "Sea caves", "Traditional villages", "Crystal waters"],
     description: "Discover the hidden gem of the Ionian Sea. Meganisi, with its three charming villages of Vathi, Spartochori, and Katomeri, offers an authentic Greek island experience. Explore secluded beaches accessible only by boat, swim in crystal-clear turquoise waters, and discover mysterious sea caves carved by centuries of waves. Stop at local tavernas for fresh seafood and experience the warm hospitality of the islanders.",
-    boatsAvailable: ["Nikita 470", "Nikita 5.00", "Nikita 5.5m", "Poseidon 5.5m"],
+    boatsAvailable: ["Nikita 4.70m", "Nikita 5.00m", "Nikita 5.5m", "Poseidon 5.5m", "Nikita SV 4.99m", "Gene 7.00m", "Capelli Tempest 8.00m", "Maestrale 8.00m"],
   },
   {
     id: "kalamos-kastos",
