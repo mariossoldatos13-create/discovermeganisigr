@@ -11,7 +11,12 @@ import cruiseKalamos1 from "@/assets/cruise-kalamos-1.jpg";
 import cruiseKalamos2 from "@/assets/cruise-kalamos-2.jpg";
 import cruiseKalamos3 from "@/assets/cruise-kalamos-3.jpg";
 import cruiseWestLefkas from "@/assets/cruise-west-lefkas.jpg";
-import cruiseIthaca from "@/assets/cruise-ithaca.jpg";
+import ithaca1 from "@/assets/ithaca-1.jpg";
+import ithaca2 from "@/assets/ithaca-2.jpg";
+import ithaca3 from "@/assets/ithaca-3.jpg";
+import ithacaGidaki from "@/assets/ithaca-gidaki.jpg";
+import atokos1 from "@/assets/atokos-1.jpg";
+import atokos2 from "@/assets/atokos-2.jpg";
 import cruisesHero from "@/assets/cruises-hero.jpg";
 
 const cruises = [
@@ -45,7 +50,7 @@ const cruises = [
   {
     id: "ithaca",
     name: "Ithaca & Atokos",
-    images: [cruiseIthaca],
+    images: [ithaca1, ithaca2, ithaca3, ithacaGidaki, atokos1, atokos2],
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Mythical history", "Vathy harbor", "Traditional culture", "Scenic bays"],
     description: "Follow in the footsteps of Odysseus to the legendary island of Ithaca. This mythical destination captivates visitors with its natural beauty and rich history. Explore the picturesque capital of Vathy, nestled in one of the world's largest natural harbors. Visit traditional villages, swim in secluded bays, and feel the magic of the island that inspired Homer's epic tale. A journey to Ithaca is truly a journey through time.",
