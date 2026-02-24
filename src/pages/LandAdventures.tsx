@@ -54,9 +54,9 @@ const vehicles = [
     type: "ATV / Quad",
     images: [atv1, atv2, atv3],
     capacity: 2,
-    terrain: "All terrain capable",
+    terrain: "Paved roads only",
     description: "Take the road less traveled with our powerful Kymco ATV. Explore scenic mountain trails and discover viewpoints most tourists never see.",
-    features: ["Off-road capable", "Powerful engine", "Rugged terrain", "Adventure ready"],
+    features: ["Powerful engine", "Adventure ready"],
   },
   {
     id: "ebike-mountain",
