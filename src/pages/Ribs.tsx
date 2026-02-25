@@ -12,9 +12,6 @@ import tempest7702 from "@/assets/tempest-770-2.jpg";
 import tempest7703 from "@/assets/tempest-770-3.jpg";
 import tempest7704 from "@/assets/tempest-770-4.jpg";
 import tempest7705 from "@/assets/tempest-770-5.jpg";
-import maestrale1 from "@/assets/maestrale-1.jpg";
-import maestrale2 from "@/assets/maestrale-2.jpg";
-import maestrale3 from "@/assets/maestrale-3.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookingInquiryDialog from "@/components/BookingInquiryDialog";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -60,29 +57,6 @@ const ribs = [
     features: {
       en: ["Flagship vessel", "Maximum comfort", "Extended range", "Premium amenities"],
       el: ["Ναυαρχίδα", "Μέγιστη άνεση", "Εκτεταμένη εμβέλεια", "Premium ανέσεις"]
-    },
-    equipment: {
-      en: ["GPS", "Radio", "Shower", "Cool Box", "USB Charger"],
-      el: ["GPS", "Ραδιόφωνο", "Ντους", "Ψυγείο", "Θύρα USB"]
-    },
-  },
-  {
-    id: "maestrale-800",
-    name: "Maestrale 8.00m",
-    power: "300 HP",
-    images: [maestrale1, maestrale2, maestrale3],
-    capacity: 10,
-    license: true,
-    licenseType: { en: "Speed boat license", el: "Δίπλωμα ταχύπλοου" },
-    destinations: ["Meganisi", "Kalamos", "Kastos", "Atokos", "Ithaca", "Lefkada"],
-    hours: "9:00 - 18:00",
-    description: {
-      en: "The Maestrale 8.00m is a powerhouse of performance and comfort. With 300HP, a spacious deck, and premium amenities, it delivers an unforgettable experience across the Ionian islands.",
-      el: "Το Maestrale 8.00m είναι ένα σκάφος κορυφαίων επιδόσεων και άνεσης. Με 300HP, ευρύχωρο κατάστρωμα και premium ανέσεις, προσφέρει μια αξέχαστη εμπειρία στα Ιόνια νησιά."
-    },
-    features: {
-      en: ["RIB stability", "Long-range capability", "Premium experience", "Spacious deck", "Comfort", "300HP power"],
-      el: ["Σταθερότητα RIB", "Μεγάλη εμβέλεια", "Premium εμπειρία", "Ευρύχωρο κατάστρωμα", "Άνεση", "Ισχύς 300HP"]
     },
     equipment: {
       en: ["GPS", "Radio", "Shower", "Cool Box", "USB Charger"],
