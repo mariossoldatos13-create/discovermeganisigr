@@ -31,7 +31,7 @@ const cruises = [
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Hidden beaches", "Sea caves", "Traditional villages", "Crystal waters"],
     description: "Discover the hidden gem of the Ionian Sea. Meganisi, with its three charming villages of Vathi, Spartochori, and Katomeri, offers an authentic Greek island experience. Explore secluded beaches accessible only by boat, swim in crystal-clear turquoise waters, and discover mysterious sea caves carved by centuries of waves. Stop at local tavernas for fresh seafood and experience the warm hospitality of the islanders.",
-    boatsAvailable: ["Nikita 4.70m", "Nikita 5.00m", "Nikita 5.5m", "Poseidon 5.5m", "Nikita SV 4.99m", "Gene 7.00m", "Capelli Tempest 8.00m", "Maestrale 8.00m"],
+    boatsAvailable: ["Nikita 4.70m", "Nikita 5.00m", "Nikita 5.5m", "Poseidon 5.5m", "Nikita SV 4.99m", "Gene 7.00m", "Capelli Tempest 8.00m"],
   },
   {
     id: "kalamos-kastos",
@@ -40,7 +40,7 @@ const cruises = [
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Unspoiled nature", "Pine forests", "Quiet harbors", "Swimming spots"],
     description: "Venture to the untouched paradise of Kalamos and Kastos, two of the most pristine islands in the Ionian. Kalamos is covered in dense pine forests that meet crystal-clear waters, while tiny Kastos offers a peaceful escape with its charming harbor and welcoming tavernas. These islands remain largely undiscovered by mass tourism, making them perfect for those seeking tranquility and natural beauty.",
-    boatsAvailable: ["Nikita 5.5m", "Poseidon 5.5m", "Nikita SV 4.99m", "Gene 7.00m", "Capelli Tempest 8.00m", "Maestrale 8.00m"],
+    boatsAvailable: ["Nikita 5.5m", "Poseidon 5.5m", "Nikita SV 4.99m", "Gene 7.00m", "Capelli Tempest 8.00m"],
   },
   {
     id: "west-lefkas",
@@ -49,7 +49,7 @@ const cruises = [
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Porto Katsiki", "Egremni Beach", "Dramatic cliffs", "Sunset views"],
     description: "Experience the dramatic western coast of Lefkada, home to some of Greece's most famous beaches. Marvel at the towering white cliffs of Porto Katsiki, consistently ranked among the best beaches in Europe. Visit the stunning Egremni beach and discover hidden coves only accessible by sea. The turquoise waters against the white limestone cliffs create a landscape that seems almost unreal.",
-    boatsAvailable: ["Gene 7.00m", "Capelli Tempest 8.00m", "Maestrale 8.00m"],
+    boatsAvailable: ["Gene 7.00m", "Capelli Tempest 8.00m"],
   },
   {
     id: "ithaca",
@@ -58,7 +58,7 @@ const cruises = [
     duration: "Full day (9:00 - 18:00)",
     highlights: ["Mythical history", "Vathy harbor", "Traditional culture", "Scenic bays"],
     description: "Follow in the footsteps of Odysseus to the legendary island of Ithaca. This mythical destination captivates visitors with its natural beauty and rich history. Explore the picturesque capital of Vathy, nestled in one of the world's largest natural harbors. Visit traditional villages, swim in secluded bays, and feel the magic of the island that inspired Homer's epic tale. A journey to Ithaca is truly a journey through time.",
-    boatsAvailable: ["Gene 7.00m", "Capelli Tempest 8.00m", "Maestrale 8.00m"],
+    boatsAvailable: ["Gene 7.00m", "Capelli Tempest 8.00m"],
   },
 ];
 
